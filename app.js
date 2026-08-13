@@ -33,6 +33,12 @@ function whatsappLink(product) {
   return `${WHATSAPP_URL}?text=${msg}`;
 }
 
+/* ---------------- Meta Pixel events ---------------- */
+
+function trackPixel(event, params) {
+  if (typeof fbq === "function") fbq("track", event, params);
+}
+
 /* ---------------- Cart storage ---------------- */
 
 function getCart() {
@@ -53,6 +59,17 @@ function addToCart(productId) {
   saveCart(cart);
   renderCartBadge();
   renderCartDrawer();
+
+  const product = PRODUCTS.find(p => String(p.id) === String(productId));
+  if (product) {
+    trackPixel("AddToCart", {
+      content_ids: [String(product.id)],
+      content_type: "product",
+      content_name: productName(product),
+      value: product.price,
+      currency: "EGP",
+    });
+  }
 }
 
 function changeQty(productId, delta) {
@@ -252,7 +269,7 @@ function render() {
           <span class="price-sale">${formatPrice(p.price, lang)}</span>
         </div>
         <button class="add-cart-btn" data-add-id="${p.id}" type="button">${T.addToCart}</button>
-        <a class="order-btn" href="${whatsappLink(p)}" target="_blank" rel="noopener">${T.orderNow}</a>
+        <a class="order-btn" data-order-id="${p.id}" href="${whatsappLink(p)}" target="_blank" rel="noopener">${T.orderNow}</a>
       </div>
     </div>
   `;
@@ -269,6 +286,22 @@ function render() {
         btn.classList.remove("added");
       }, 1200);
       openCart();
+    });
+  });
+
+  grid.querySelectorAll("a[data-order-id]").forEach(link => {
+    link.addEventListener("click", () => {
+      const product = PRODUCTS.find(p => String(p.id) === link.dataset.orderId);
+      if (product) {
+        trackPixel("InitiateCheckout", {
+          content_ids: [String(product.id)],
+          content_type: "product",
+          content_name: productName(product),
+          value: product.price,
+          currency: "EGP",
+          num_items: 1,
+        });
+      }
     });
   });
 }
@@ -293,6 +326,22 @@ async function init() {
 
   if (productParam) {
     document.getElementById("grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const product = PRODUCTS.find(p => String(p.id) === String(productParam));
+    if (product) {
+      trackPixel("ViewContent", {
+        content_ids: [String(product.id)],
+        content_type: "product",
+        content_name: productName(product),
+        value: product.price,
+        currency: "EGP",
+      });
+    }
+  } else {
+    trackPixel("ViewContent", {
+      content_ids: PRODUCTS.map(p => String(p.id)),
+      content_type: "product_group",
+      currency: "EGP",
+    });
   }
 
   const searchInput = document.getElementById("searchInput");
@@ -318,6 +367,15 @@ async function init() {
   document.getElementById("langToggleBtn")?.addEventListener("click", toggleLang);
 
   document.getElementById("cartCheckoutBtn")?.addEventListener("click", () => {
+    const cart = getCart();
+    const ids = Object.keys(cart);
+    trackPixel("InitiateCheckout", {
+      content_ids: ids,
+      content_type: "product",
+      value: cartTotal(),
+      currency: "EGP",
+      num_items: cartCount(),
+    });
     const msg = encodeURIComponent(buildCheckoutMessage());
     window.open(`${WHATSAPP_URL}?text=${msg}`, "_blank", "noopener");
   });
