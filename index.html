@@ -12,9 +12,28 @@
 <div class="topbar">
   <div class="topbar-inner">
     <div class="brand"><span class="leaf">✦</span> Amira Art Corner</div>
-    <div class="topbar-actions">
+    <div class="topbar-actions" style="display:flex; align-items:center; gap:10px;">
       <a href="https://www.facebook.com/profile.php?id=61587767691246" target="_blank" rel="noopener">صفحتنا على فيسبوك</a>
+      <button class="cart-btn" id="cartOpenBtn" type="button">
+        🛒 السلة <span class="cart-badge" id="cartBadge">0</span>
+      </button>
     </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2>سلة المشتريات</h2>
+    <button class="cart-close" id="cartCloseBtn" type="button">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>الإجمالي</span>
+      <span id="cartTotal">0 ج.م</span>
+    </div>
+    <button class="cart-checkout-btn" id="cartCheckoutBtn" type="button">إتمام الطلب عبر ماسنجر</button>
   </div>
 </div>
 
