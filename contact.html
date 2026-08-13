@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>تواصل معنا | Amira Art Corner</title>
-<meta name="description" content="تواصلي مع Amira Art Corner عبر واتساب أو فيسبوك لطلب أي لوحة." />
+<meta name="description" content="تواصلي مع Amira Art Corner عبر واتساب أو فيسبوك أو إنستجرام لطلب أي لوحة." />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,37 +15,141 @@
       <div class="brand"><span class="leaf">✦</span> Amira Art Corner</div>
     </a>
     <nav class="topbar-nav">
-      <a href="index.html">المتجر</a>
-      <a href="about.html">من نحن</a>
-      <a href="contact.html">تواصل معنا</a>
+      <a href="index.html" data-i18n="navShop">المتجر</a>
+      <a href="about.html" data-i18n="navAbout">من نحن</a>
+      <a href="contact.html" data-i18n="navContact">تواصل معنا</a>
     </nav>
     <div class="topbar-actions">
-      <a href="https://wa.me/201284622564" target="_blank" rel="noopener">راسلينا واتساب</a>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61587767691246" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12"/></svg>
+        </a>
+        <a href="https://www.instagram.com/amirasartcorner/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.1 0 4.1.1 1.1 0 1.8.2 2.5.5.7.3 1.2.6 1.8 1.2.6.6.9 1.1 1.2 1.8.3.7.5 1.4.5 2.5.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c0 1.1-.2 1.8-.5 2.5-.3.7-.6 1.2-1.2 1.8-.6.6-1.1.9-1.8 1.2-.7.3-1.4.5-2.5.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1.1 0-1.8-.2-2.5-.5-.7-.3-1.2-.6-1.8-1.2-.6-.6-.9-1.1-1.2-1.8-.3-.7-.5-1.4-.5-2.5C2 15.1 2 14.7 2 12s0-3.1.1-4.1c0-1.1.2-1.8.5-2.5.3-.7.6-1.2 1.2-1.8.6-.6 1.1-.9 1.8-1.2.7-.3 1.4-.5 2.5-.5C8.9 2 9.3 2 12 2m0 1.8c-2.6 0-3 0-4 .1-.9 0-1.4.2-1.7.3-.4.2-.7.3-1 .6-.3.3-.5.6-.6 1-.1.3-.3.8-.3 1.7-.1 1-.1 1.4-.1 4s0 3 .1 4c0 .9.2 1.4.3 1.7.2.4.3.7.6 1 .3.3.6.5 1 .6.3.1.8.3 1.7.3 1 .1 1.4.1 4 .1s3 0 4-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.3 1-.6.3-.3.5-.6.6-1 .1-.3.3-.8.3-1.7.1-1 .1-1.4.1-4s0-3-.1-4c0-.9-.2-1.4-.3-1.7-.2-.4-.3-.7-.6-1-.3-.3-.6-.5-1-.6-.3-.1-.8-.3-1.7-.3-1-.1-1.4-.1-4-.1m0 3a5.2 5.2 0 1 1 0 10.4A5.2 5.2 0 0 1 12 6.8m0 1.8a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8m5.4-2a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0"/></svg>
+        </a>
+      </div>
+      <button class="lang-btn" id="langToggleBtn" type="button">English</button>
     </div>
   </div>
 </div>
 
-<div class="hero" style="text-align:right; max-width: 760px;">
-  <h1 style="font-size:30px;">تواصل معنا</h1>
-  <p style="line-height:2;">عايزة تطلبي لوحة، أو عندك سؤال عن مقاس أو خامة معينة؟ إحنا في انتظارك.</p>
+<div class="page-content" id="pageAr">
+  <h1>تواصل معنا</h1>
+  <p>عايزة تطلبي لوحة، أو عندك سؤال عن مقاس أو خامة معينة؟ إحنا في انتظارك.</p>
 
-  <div style="display:flex; flex-direction:column; gap:14px; margin-top: 24px;">
-    <a href="https://wa.me/201284622564" target="_blank" rel="noopener"
-       style="display:flex; align-items:center; gap:10px; background:#25d366; color:#fff; padding:14px 20px; border-radius:12px; text-decoration:none; font-weight:700;">
+  <div style="display:flex; flex-direction:column; gap:14px; margin-top: 24px; max-width: 420px;">
+    <a href="https://wa.me/201284622564" target="_blank" rel="noopener" class="contact-link-btn wa">
       💬 راسلينا على واتساب — <span dir="ltr">+20 12 8462 2564</span>
     </a>
-    <a href="https://www.facebook.com/profile.php?id=61587767691246" target="_blank" rel="noopener"
-       style="display:flex; align-items:center; gap:10px; background:var(--gold); color:#fff; padding:14px 20px; border-radius:12px; text-decoration:none; font-weight:700;">
+    <a href="https://www.facebook.com/profile.php?id=61587767691246" target="_blank" rel="noopener" class="contact-link-btn fb">
       📘 صفحتنا على فيسبوك
     </a>
+    <a href="https://www.instagram.com/amirasartcorner/" target="_blank" rel="noopener" class="contact-link-btn fb">
+      📸 صفحتنا على إنستجرام
+    </a>
   </div>
+
+  <form class="contact-form" id="contactFormAr">
+    <div>
+      <label>الاسم</label>
+      <input type="text" name="name" required />
+    </div>
+    <div>
+      <label>رقم الموبايل</label>
+      <input type="tel" name="phone" required />
+    </div>
+    <div>
+      <label>رسالتك</label>
+      <textarea name="message" placeholder="اكتبي تفاصيل الطلب أو السؤال هنا..."></textarea>
+    </div>
+    <button type="submit">إرسال عبر واتساب</button>
+  </form>
+</div>
+
+<div class="page-content" id="pageEn" style="display:none;">
+  <h1>Contact us</h1>
+  <p>Want to order a painting, or have a question about size or material? We're here for you.</p>
+
+  <div style="display:flex; flex-direction:column; gap:14px; margin-top: 24px; max-width: 420px;">
+    <a href="https://wa.me/201284622564" target="_blank" rel="noopener" class="contact-link-btn wa">
+      💬 Message us on WhatsApp — <span dir="ltr">+20 12 8462 2564</span>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61587767691246" target="_blank" rel="noopener" class="contact-link-btn fb">
+      📘 Our Facebook Page
+    </a>
+    <a href="https://www.instagram.com/amirasartcorner/" target="_blank" rel="noopener" class="contact-link-btn fb">
+      📸 Our Instagram Page
+    </a>
+  </div>
+
+  <form class="contact-form" id="contactFormEn">
+    <div>
+      <label>Name</label>
+      <input type="text" name="name" required />
+    </div>
+    <div>
+      <label>Phone number</label>
+      <input type="tel" name="phone" required />
+    </div>
+    <div>
+      <label>Your message</label>
+      <textarea name="message" placeholder="Write your order details or question here..."></textarea>
+    </div>
+    <button type="submit">Send via WhatsApp</button>
+  </form>
 </div>
 
 <footer>
-  <p>Amira Art Corner &copy; 2026 — لطلب أي قطعة، تواصل معنا مباشرة عبر <a href="https://wa.me/201284622564" target="_blank" rel="noopener">واتساب</a> أو <a href="https://www.facebook.com/profile.php?id=61587767691246" target="_blank" rel="noopener">فيسبوك</a>.</p>
+  <p>
+    <span data-i18n="footer">Amira Art Corner &copy; 2026 — لطلب أي قطعة، تواصل معنا مباشرة عبر</span>
+    <a href="https://wa.me/201284622564" target="_blank" rel="noopener" data-i18n="whatsapp">واتساب</a>
+    <span data-i18n="footerAnd">أو</span>
+    <a href="https://www.facebook.com/profile.php?id=61587767691246" target="_blank" rel="noopener" data-i18n="facebook">فيسبوك</a>.
+  </p>
 </footer>
 
 <a class="wa-float" href="https://wa.me/201284622564" target="_blank" rel="noopener" title="راسلنا على واتساب">💬</a>
 
+<script src="i18n.js"></script>
+<script>
+  const WHATSAPP_URL = "https://wa.me/201284622564";
+
+  function applyPageLang() {
+    applyDocumentLang();
+    const lang = getLang();
+    document.getElementById("pageAr").style.display = lang === "ar" ? "" : "none";
+    document.getElementById("pageEn").style.display = lang === "en" ? "" : "none";
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+      if (t()[key] !== undefined) el.textContent = t()[key];
+    });
+    const langBtn = document.getElementById("langToggleBtn");
+    if (langBtn) langBtn.textContent = t().langToggle;
+  }
+
+  function handleSubmit(e, lang) {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
+    const message = form.message.value.trim();
+
+    const text = lang === "ar"
+      ? `مرحبًا، اسمي ${name} (${phone}).\n${message || "عايزة أستفسر عن المتجر."}`
+      : `Hello, my name is ${name} (${phone}).\n${message || "I'd like to ask about the shop."}`;
+
+    window.open(`${WHATSAPP_URL}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+    form.reset();
+  }
+
+  document.getElementById("contactFormAr").addEventListener("submit", (e) => handleSubmit(e, "ar"));
+  document.getElementById("contactFormEn").addEventListener("submit", (e) => handleSubmit(e, "en"));
+
+  document.getElementById("langToggleBtn").addEventListener("click", () => {
+    setLang(getLang() === "ar" ? "en" : "ar");
+    applyPageLang();
+  });
+  applyPageLang();
+</script>
 </body>
 </html>

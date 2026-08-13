@@ -1,17 +1,34 @@
 const WHATSAPP_NUMBER = "201284622564";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 const CART_KEY = "amira_art_corner_cart";
+const DISCOUNT_MARKUP = 1.3; // "before discount" price = sale price * 1.3
 
 let PRODUCTS = [];
 let currentSort = "default";
 let currentQuery = "";
 
-function formatPrice(p) {
-  return p.toLocaleString("en-US") + " ج.م";
+function formatPrice(p, lang) {
+  const locale = lang === "en" ? "en-US" : "en-US";
+  const suffix = lang === "en" ? " EGP" : " ج.م";
+  return Math.round(p).toLocaleString(locale) + suffix;
+}
+
+function productName(p) {
+  return t().productName(p.id);
+}
+
+function originalPrice(price) {
+  return Math.round(price * DISCOUNT_MARKUP);
+}
+
+function discountPercent(price) {
+  const orig = originalPrice(price);
+  return Math.round((1 - price / orig) * 100);
 }
 
 function whatsappLink(product) {
-  const msg = encodeURIComponent(`مرحبًا، عايز أطلب: ${product.name} (${formatPrice(product.price)})`);
+  const lang = getLang();
+  const msg = encodeURIComponent(t().orderMsg(productName(product), formatPrice(product.price, lang)));
   return `${WHATSAPP_URL}?text=${msg}`;
 }
 
@@ -71,16 +88,20 @@ function cartTotal() {
 }
 
 function renderCartBadge() {
-  document.getElementById("cartBadge").textContent = cartCount();
+  const el = document.getElementById("cartBadge");
+  if (el) el.textContent = cartCount();
 }
 
 function renderCartDrawer() {
   const cart = getCart();
   const container = document.getElementById("cartItems");
+  if (!container) return;
   const ids = Object.keys(cart);
+  const lang = getLang();
+  const T = t();
 
   if (ids.length === 0) {
-    container.innerHTML = `<div class="cart-empty">السلة فاضية دلوقتي — اختاري أي لوحة وضيفيها 🎨</div>`;
+    container.innerHTML = `<div class="cart-empty">${T.cartEmpty}</div>`;
   } else {
     container.innerHTML = ids.map(id => {
       const product = PRODUCTS.find(p => String(p.id) === String(id));
@@ -88,15 +109,15 @@ function renderCartDrawer() {
       const qty = cart[id];
       return `
         <div class="cart-item">
-          <img src="${product.image}" alt="${product.name}" />
+          <img src="${product.image}" alt="${productName(product)}" />
           <div class="cart-item-info">
-            <div class="cart-item-name">${product.name}</div>
-            <div class="cart-item-price">${formatPrice(product.price)}</div>
+            <div class="cart-item-name">${productName(product)}</div>
+            <div class="cart-item-price">${formatPrice(product.price, lang)}</div>
             <div class="cart-item-qty">
               <button data-action="dec" data-id="${id}" type="button">−</button>
               <span>${qty}</span>
               <button data-action="inc" data-id="${id}" type="button">+</button>
-              <button class="cart-item-remove" data-action="remove" data-id="${id}" type="button">حذف</button>
+              <button class="cart-item-remove" data-action="remove" data-id="${id}" type="button">${T.remove}</button>
             </div>
           </div>
         </div>
@@ -104,7 +125,7 @@ function renderCartDrawer() {
     }).join("");
   }
 
-  document.getElementById("cartTotal").textContent = formatPrice(cartTotal());
+  document.getElementById("cartTotal").textContent = formatPrice(cartTotal(), lang);
   const checkoutBtn = document.getElementById("cartCheckoutBtn");
   checkoutBtn.disabled = ids.length === 0;
 
@@ -121,7 +142,9 @@ function renderCartDrawer() {
 
 function buildCheckoutMessage() {
   const cart = getCart();
-  const lines = ["مرحبًا، عايزة أطلب القطع دي:"];
+  const lang = getLang();
+  const T = t();
+  const lines = [T.checkoutIntro];
   let total = 0;
   for (const id in cart) {
     const product = PRODUCTS.find(p => String(p.id) === String(id));
@@ -129,9 +152,9 @@ function buildCheckoutMessage() {
     const qty = cart[id];
     const lineTotal = product.price * qty;
     total += lineTotal;
-    lines.push(`- ${product.name} × ${qty} = ${formatPrice(lineTotal)}`);
+    lines.push(`- ${productName(product)} × ${qty} = ${formatPrice(lineTotal, lang)}`);
   }
-  lines.push(`الإجمالي: ${formatPrice(total)}`);
+  lines.push(`${T.checkoutTotal}: ${formatPrice(total, lang)}`);
   return lines.join("\n");
 }
 
@@ -145,14 +168,54 @@ function closeCart() {
   document.getElementById("cartOverlay").classList.remove("open");
 }
 
+/* ---------------- Static text ---------------- */
+
+function applyStaticText() {
+  const T = t();
+  applyDocumentLang();
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    if (T[key] !== undefined) el.textContent = T[key];
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (T[key] !== undefined) el.innerHTML = T[key];
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    if (T[key] !== undefined) el.placeholder = T[key];
+  });
+
+  const langBtn = document.getElementById("langToggleBtn");
+  if (langBtn) langBtn.textContent = T.langToggle;
+
+  const sortSelect = document.getElementById("sortSelect");
+  if (sortSelect) {
+    sortSelect.options[0].textContent = T.sortDefault;
+    sortSelect.options[1].textContent = T.sortPriceAsc;
+    sortSelect.options[2].textContent = T.sortPriceDesc;
+  }
+}
+
+function toggleLang() {
+  setLang(getLang() === "ar" ? "en" : "ar");
+  applyStaticText();
+  render();
+  renderCartDrawer();
+}
+
 /* ---------------- Product grid ---------------- */
 
 function render() {
   const grid = document.getElementById("grid");
+  if (!grid) return;
   const countLabel = document.getElementById("countLabel");
+  const T = t();
+  const lang = getLang();
 
   let items = PRODUCTS.filter(p =>
-    p.name.toLowerCase().includes(currentQuery.toLowerCase()) ||
+    productName(p).toLowerCase().includes(currentQuery.toLowerCase()) ||
     String(p.id).includes(currentQuery)
   );
 
@@ -160,34 +223,43 @@ function render() {
   if (currentSort === "price-desc") items.sort((a, b) => b.price - a.price);
   if (currentSort === "default") items.sort((a, b) => a.id - b.id);
 
-  countLabel.textContent = `${items.length} منتج`;
+  countLabel.textContent = `${items.length} ${T.countSuffix}`;
 
   if (items.length === 0) {
-    grid.innerHTML = `<div class="empty-state">مفيش منتجات مطابقة للبحث</div>`;
+    grid.innerHTML = `<div class="empty-state">${T.emptySearch}</div>`;
     return;
   }
 
-  grid.innerHTML = items.map(p => `
+  grid.innerHTML = items.map(p => {
+    const orig = originalPrice(p.price);
+    const pct = discountPercent(p.price);
+    return `
     <div class="card">
       <div class="thumb">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" />
+        <img src="${p.image}" alt="${productName(p)}" loading="lazy" />
+        <span class="discount-badge">-${pct}%</span>
       </div>
       <div class="card-body">
-        <div class="pname">${p.name}</div>
-        <div class="pprice">${formatPrice(p.price)}</div>
-        <button class="add-cart-btn" data-add-id="${p.id}" type="button">أضف للسلة 🛒</button>
-        <a class="order-btn" href="${whatsappLink(p)}" target="_blank" rel="noopener">اطلب مباشرة عبر واتساب</a>
+        <div class="pname">${productName(p)}</div>
+        <div class="price-row">
+          <span class="price-original">${formatPrice(orig, lang)}</span>
+          <span class="price-sale">${formatPrice(p.price, lang)}</span>
+        </div>
+        <button class="add-cart-btn" data-add-id="${p.id}" type="button">${T.addToCart}</button>
+        <a class="order-btn" href="${whatsappLink(p)}" target="_blank" rel="noopener">${T.orderNow}</a>
       </div>
     </div>
-  `).join("");
+  `;
+  }).join("");
 
   grid.querySelectorAll("button[data-add-id]").forEach(btn => {
     btn.addEventListener("click", () => {
       addToCart(btn.dataset.addId);
-      btn.textContent = "✓ اتضافت للسلة";
+      const original = t().addToCart;
+      btn.textContent = t().addedToCart;
       btn.classList.add("added");
       setTimeout(() => {
-        btn.textContent = "أضف للسلة 🛒";
+        btn.textContent = original;
         btn.classList.remove("added");
       }, 1200);
       openCart();
@@ -196,27 +268,36 @@ function render() {
 }
 
 async function init() {
+  applyStaticText();
+
   const res = await fetch("products.json");
   PRODUCTS = await res.json();
   render();
   renderCartBadge();
   renderCartDrawer();
 
-  document.getElementById("searchInput").addEventListener("input", (e) => {
-    currentQuery = e.target.value;
-    render();
-  });
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      currentQuery = e.target.value;
+      render();
+    });
+  }
 
-  document.getElementById("sortSelect").addEventListener("change", (e) => {
-    currentSort = e.target.value;
-    render();
-  });
+  const sortSelect = document.getElementById("sortSelect");
+  if (sortSelect) {
+    sortSelect.addEventListener("change", (e) => {
+      currentSort = e.target.value;
+      render();
+    });
+  }
 
-  document.getElementById("cartOpenBtn").addEventListener("click", openCart);
-  document.getElementById("cartCloseBtn").addEventListener("click", closeCart);
-  document.getElementById("cartOverlay").addEventListener("click", closeCart);
+  document.getElementById("cartOpenBtn")?.addEventListener("click", openCart);
+  document.getElementById("cartCloseBtn")?.addEventListener("click", closeCart);
+  document.getElementById("cartOverlay")?.addEventListener("click", closeCart);
+  document.getElementById("langToggleBtn")?.addEventListener("click", toggleLang);
 
-  document.getElementById("cartCheckoutBtn").addEventListener("click", () => {
+  document.getElementById("cartCheckoutBtn")?.addEventListener("click", () => {
     const msg = encodeURIComponent(buildCheckoutMessage());
     window.open(`${WHATSAPP_URL}?text=${msg}`, "_blank", "noopener");
   });
