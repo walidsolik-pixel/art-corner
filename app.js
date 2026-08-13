@@ -6,6 +6,7 @@ const DISCOUNT_MARKUP = 1.3; // "before discount" price = sale price * 1.3
 let PRODUCTS = [];
 let currentSort = "default";
 let currentQuery = "";
+let pinnedProductId = null;
 
 function formatPrice(p, lang) {
   const locale = lang === "en" ? "en-US" : "en-US";
@@ -214,10 +215,15 @@ function render() {
   const T = t();
   const lang = getLang();
 
-  let items = PRODUCTS.filter(p =>
-    productName(p).toLowerCase().includes(currentQuery.toLowerCase()) ||
-    String(p.id).includes(currentQuery)
-  );
+  let items;
+  if (pinnedProductId) {
+    items = PRODUCTS.filter(p => String(p.id) === String(pinnedProductId));
+  } else {
+    items = PRODUCTS.filter(p =>
+      productName(p).toLowerCase().includes(currentQuery.toLowerCase()) ||
+      String(p.id).includes(currentQuery)
+    );
+  }
 
   if (currentSort === "price-asc") items.sort((a, b) => a.price - b.price);
   if (currentSort === "price-desc") items.sort((a, b) => b.price - a.price);
@@ -272,13 +278,27 @@ async function init() {
 
   const res = await fetch("products.json");
   PRODUCTS = await res.json();
+
+  const params = new URLSearchParams(window.location.search);
+  const productParam = params.get("p");
+  if (productParam) {
+    pinnedProductId = productParam;
+    const si = document.getElementById("searchInput");
+    if (si) si.value = productParam;
+  }
+
   render();
   renderCartBadge();
   renderCartDrawer();
 
+  if (productParam) {
+    document.getElementById("grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
     searchInput.addEventListener("input", (e) => {
+      pinnedProductId = null;
       currentQuery = e.target.value;
       render();
     });
