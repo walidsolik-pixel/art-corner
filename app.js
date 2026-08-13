@@ -1,5 +1,5 @@
-const FB_PAGE_URL = "https://www.facebook.com/profile.php?id=61587767691246";
-const MESSENGER_URL = "https://m.me/61587767691246";
+const WHATSAPP_NUMBER = "201284622564";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 const CART_KEY = "amira_art_corner_cart";
 
 let PRODUCTS = [];
@@ -10,9 +10,9 @@ function formatPrice(p) {
   return p.toLocaleString("en-US") + " ج.م";
 }
 
-function orderLink(product) {
+function whatsappLink(product) {
   const msg = encodeURIComponent(`مرحبًا، عايز أطلب: ${product.name} (${formatPrice(product.price)})`);
-  return `${MESSENGER_URL}?text=${msg}`;
+  return `${WHATSAPP_URL}?text=${msg}`;
 }
 
 /* ---------------- Cart storage ---------------- */
@@ -176,7 +176,7 @@ function render() {
         <div class="pname">${p.name}</div>
         <div class="pprice">${formatPrice(p.price)}</div>
         <button class="add-cart-btn" data-add-id="${p.id}" type="button">أضف للسلة 🛒</button>
-        <a class="order-btn" href="${orderLink(p)}" target="_blank" rel="noopener">اطلب مباشرة عبر مسنجر</a>
+        <a class="order-btn" href="${whatsappLink(p)}" target="_blank" rel="noopener">اطلب مباشرة عبر واتساب</a>
       </div>
     </div>
   `).join("");
@@ -218,7 +218,7 @@ async function init() {
 
   document.getElementById("cartCheckoutBtn").addEventListener("click", () => {
     const msg = encodeURIComponent(buildCheckoutMessage());
-    window.open(`${MESSENGER_URL}?text=${msg}`, "_blank", "noopener");
+    window.open(`${WHATSAPP_URL}?text=${msg}`, "_blank", "noopener");
   });
 }
 
