@@ -520,5 +520,59 @@
     "name": "تصميم يدوي #87",
     "price": 700,
     "image": "art-87.jpeg"
+  },
+  {
+    "id": 88,
+    "name": "تصميم يدوي #88",
+    "price": 650,
+    "image": "art-88.jpeg"
+  },
+  {
+    "id": 89,
+    "name": "تصميم يدوي #89",
+    "price": 500,
+    "image": "art-89.jpeg"
+  },
+  {
+    "id": 90,
+    "name": "تصميم يدوي #90",
+    "price": 175,
+    "image": "art-90.jpeg"
+  },
+  {
+    "id": 91,
+    "name": "تصميم يدوي #91",
+    "price": 175,
+    "image": "art-91.jpeg"
+  },
+  {
+    "id": 92,
+    "name": "تصميم يدوي #92",
+    "price": 175,
+    "image": "art-92.jpeg"
+  },
+  {
+    "id": 93,
+    "name": "تصميم يدوي #93",
+    "price": 250,
+    "image": "art-93.jpeg"
+  },
+  {
+    "id": 94,
+    "name": "تصميم يدوي #94",
+    "price": 200,
+    "image": "art-94.jpeg"
+  },
+  {
+    "id": 95,
+    "name": "تصميم يدوي #95",
+    "price": 70,
+    "image": "art-95.jpeg"
+  },
+  {
+    "id": 96,
+    "name": "تصميم يدوي #96",
+    "price": 550,
+    "image": "art-96.jpeg"
   }
 ]
