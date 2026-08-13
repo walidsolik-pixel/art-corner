@@ -16,14 +16,14 @@ const rows = [header.join(',')];
 for (const p of products) {
   const row = [
     p.id,
-    `Amira Art Corner - ${p.name}`,
-    `قطعة فنية أصلية مرسومة يدويًا من Amira Art Corner`,
+    `Art Corner - ${p.name}`,
+    `قطعة فنية أصلية مرسومة يدويًا من Art Corner`,
     'in stock',
     'new',
     `${p.price.toFixed(2)} EGP`,
     `${BASE}/index.html?p=${p.id}`,
     `${BASE}/${p.image}`,
-    'Amira Art Corner',
+    'Art Corner',
   ].map(csvEscape);
   rows.push(row.join(','));
 }

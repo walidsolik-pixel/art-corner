@@ -1,4 +1,4 @@
-/* Meta Pixel base code - Amira Art Corner (Pixel ID: 1698406408088102) */
+/* Meta Pixel base code - Art Corner (Pixel ID: 1698406408088102) */
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};

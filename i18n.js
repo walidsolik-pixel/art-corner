@@ -3,7 +3,7 @@ const LANG_KEY = "amira_lang";
 const TRANSLATIONS = {
   ar: {
     dir: "rtl",
-    brand: "Amira Art Corner",
+    brand: "Art Corner",
     navShop: "المتجر",
     navAbout: "من نحن",
     navContact: "تواصل معنا",
@@ -25,7 +25,7 @@ const TRANSLATIONS = {
     total: "الإجمالي",
     checkout: "إتمام الطلب عبر واتساب",
     remove: "حذف",
-    footer: "Amira Art Corner &copy; 2026 — لطلب أي قطعة، تواصل معنا مباشرة عبر",
+    footer: "Art Corner &copy; 2026 — لطلب أي قطعة، تواصل معنا مباشرة عبر",
     footerAnd: "أو",
     whatsapp: "واتساب",
     facebook: "فيسبوك",
@@ -37,7 +37,7 @@ const TRANSLATIONS = {
   },
   en: {
     dir: "ltr",
-    brand: "Amira Art Corner",
+    brand: "Art Corner",
     navShop: "Shop",
     navAbout: "About",
     navContact: "Contact",
@@ -59,7 +59,7 @@ const TRANSLATIONS = {
     total: "Total",
     checkout: "Checkout via WhatsApp",
     remove: "Remove",
-    footer: "Amira Art Corner &copy; 2026 — to order any piece, contact us directly via",
+    footer: "Art Corner &copy; 2026 — to order any piece, contact us directly via",
     footerAnd: "or",
     whatsapp: "WhatsApp",
     facebook: "Facebook",
