@@ -16,7 +16,7 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Tahoma", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Cairo", "Tahoma", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 html[dir="rtl"] body { direction: rtl; }
@@ -549,6 +549,33 @@ footer .social-icons { justify-content: center; margin-top: 14px; }
 
 .contact-link-btn.wa { background: #25d366; }
 .contact-link-btn.fb { background: var(--turquoise); }
+
+.contact-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.contact-icons a {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--turquoise);
+  color: var(--turquoise);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-icons a:hover {
+  background: var(--turquoise);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.contact-icons svg { width: 24px; height: 24px; fill: currentColor; }
 
 /* ---------- Contact form ---------- */
 
