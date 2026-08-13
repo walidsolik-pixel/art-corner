@@ -256,6 +256,26 @@ function render() {
   grid.innerHTML = items.map(p => {
     const orig = originalPrice(p.price);
     const pct = discountPercent(p.price);
+
+    if (p.soldOut) {
+      return `
+      <div class="card sold-out">
+        <div class="thumb">
+          <img src="${p.image}" alt="${productName(p)}" loading="lazy" />
+          <span class="discount-badge sold-out-badge">${T.soldOut}</span>
+        </div>
+        <div class="card-body">
+          <div class="pname">${productName(p)}</div>
+          <div class="price-row">
+            <span class="price-original">${formatPrice(orig, lang)}</span>
+            <span class="price-sale">${formatPrice(p.price, lang)}</span>
+          </div>
+          <button class="add-cart-btn" type="button" disabled>${T.soldOut}</button>
+        </div>
+      </div>
+    `;
+    }
+
     return `
     <div class="card">
       <div class="thumb">

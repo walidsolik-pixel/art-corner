@@ -18,7 +18,7 @@ for (const p of products) {
     p.id,
     `Art Corner - ${p.name}`,
     `قطعة فنية أصلية مرسومة يدويًا من Art Corner`,
-    'in stock',
+    p.soldOut ? 'out of stock' : 'in stock',
     'new',
     `${p.price.toFixed(2)} EGP`,
     `${BASE}/index.html?p=${p.id}`,

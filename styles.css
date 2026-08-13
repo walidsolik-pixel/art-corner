@@ -392,6 +392,20 @@ footer .social-icons { justify-content: center; margin-top: 14px; }
 
 .add-cart-btn:hover { background: var(--turquoise-dark); }
 .add-cart-btn.added { background: #25d366; }
+.add-cart-btn:disabled {
+  background: #b3b3b3;
+  cursor: not-allowed;
+}
+.add-cart-btn:disabled:hover { background: #b3b3b3; }
+
+.card.sold-out .thumb img {
+  filter: grayscale(70%);
+  opacity: 0.75;
+}
+
+.sold-out-badge {
+  background: #4a4a4a;
+}
 
 .cart-overlay {
   position: fixed;
