@@ -56,6 +56,13 @@ img { max-width: 100%; display: block; }
 
 .brand .leaf { color: var(--turquoise); }
 
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
 .topbar-nav {
   display: flex;
   align-items: center;
