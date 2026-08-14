@@ -18,12 +18,15 @@ function productName(p) {
   return t().productName(p.id);
 }
 
-function originalPrice(price) {
+function originalPrice(product) {
+  if (product && typeof product.originalPrice === "number") return product.originalPrice;
+  const price = typeof product === "number" ? product : product.price;
   return Math.round(price * DISCOUNT_MARKUP);
 }
 
-function discountPercent(price) {
-  const orig = originalPrice(price);
+function discountPercent(product) {
+  const price = typeof product === "number" ? product : product.price;
+  const orig = originalPrice(product);
   return Math.round((1 - price / orig) * 100);
 }
 
@@ -254,8 +257,8 @@ function render() {
   }
 
   grid.innerHTML = items.map(p => {
-    const orig = originalPrice(p.price);
-    const pct = discountPercent(p.price);
+    const orig = originalPrice(p);
+    const pct = discountPercent(p);
 
     if (p.soldOut) {
       return `

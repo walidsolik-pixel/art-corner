@@ -3,580 +3,676 @@
     "id": 1,
     "name": "تصميم يدوي #1",
     "price": 800,
-    "image": "art-1.jpeg"
+    "image": "art-1.jpeg",
+    "originalPrice": 1050
   },
   {
     "id": 2,
     "name": "تصميم يدوي #2",
     "price": 450,
-    "image": "art-2.jpeg"
+    "image": "art-2.jpeg",
+    "originalPrice": 600
   },
   {
     "id": 3,
     "name": "تصميم يدوي #3",
     "price": 450,
-    "image": "art-3.jpeg"
+    "image": "art-3.jpeg",
+    "originalPrice": 600
   },
   {
     "id": 4,
     "name": "تصميم يدوي #4",
     "price": 200,
-    "image": "art-4.jpeg"
+    "image": "art-4.jpeg",
+    "originalPrice": 250
   },
   {
     "id": 5,
     "name": "تصميم يدوي #5",
     "price": 500,
-    "image": "art-5.jpeg"
+    "image": "art-5.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 6,
     "name": "تصميم يدوي #6",
     "price": 1000,
-    "image": "art-6.jpeg"
+    "image": "art-6.jpeg",
+    "originalPrice": 1300
   },
   {
     "id": 7,
     "name": "تصميم يدوي #7",
     "price": 500,
-    "image": "art-7.jpeg"
+    "image": "art-7.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 8,
     "name": "تصميم يدوي #8",
     "price": 550,
-    "image": "art-8.jpeg"
+    "image": "art-8.jpeg",
+    "originalPrice": 700
   },
   {
     "id": 9,
     "name": "تصميم يدوي #9",
     "price": 125,
-    "image": "art-9.jpeg"
+    "image": "art-9.jpeg",
+    "originalPrice": 150
   },
   {
     "id": 10,
     "name": "تصميم يدوي #10",
     "price": 900,
-    "image": "art-10.jpeg"
+    "image": "art-10.jpeg",
+    "originalPrice": 1150
   },
   {
     "id": 11,
     "name": "تصميم يدوي #11",
     "price": 350,
-    "image": "art-11.jpeg"
+    "image": "art-11.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 12,
     "name": "تصميم يدوي #12",
     "price": 350,
-    "image": "art-12.jpeg"
+    "image": "art-12.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 13,
     "name": "تصميم يدوي #13",
     "price": 350,
-    "image": "art-13.jpeg"
+    "image": "art-13.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 14,
     "name": "تصميم يدوي #14",
     "price": 350,
-    "image": "art-14.jpeg"
+    "image": "art-14.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 15,
     "name": "تصميم يدوي #15",
     "price": 1200,
-    "image": "art-15.jpeg"
+    "image": "art-15.jpeg",
+    "originalPrice": 1550
   },
   {
     "id": 16,
     "name": "تصميم يدوي #16",
     "price": 500,
-    "image": "art-16.jpeg"
+    "image": "art-16.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 17,
     "name": "تصميم يدوي #17",
     "price": 1200,
-    "image": "art-17.jpeg"
+    "image": "art-17.jpeg",
+    "originalPrice": 1550
   },
   {
     "id": 18,
     "name": "تصميم يدوي #18",
     "price": 500,
-    "image": "art-18.jpeg"
+    "image": "art-18.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 19,
     "name": "تصميم يدوي #19",
     "price": 550,
-    "image": "art-19.jpeg"
+    "image": "art-19.jpeg",
+    "originalPrice": 700
   },
   {
     "id": 20,
     "name": "تصميم يدوي #20",
     "price": 500,
-    "image": "art-20.jpeg"
+    "image": "art-20.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 21,
     "name": "تصميم يدوي #21",
     "price": 700,
-    "image": "art-21.jpeg"
+    "image": "art-21.jpeg",
+    "originalPrice": 900
   },
   {
     "id": 22,
     "name": "تصميم يدوي #22",
     "price": 350,
-    "image": "art-22.jpeg"
+    "image": "art-22.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 23,
     "name": "تصميم يدوي #23",
     "price": 450,
-    "image": "art-23.jpeg"
+    "image": "art-23.jpeg",
+    "originalPrice": 600
   },
   {
     "id": 24,
     "name": "تصميم يدوي #24",
     "price": 750,
-    "image": "art-24.jpeg"
+    "image": "art-24.jpeg",
+    "originalPrice": 1000
   },
   {
     "id": 25,
     "name": "تصميم يدوي #25",
     "price": 500,
-    "image": "art-25.jpeg"
+    "image": "art-25.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 26,
     "name": "تصميم يدوي #26",
     "price": 700,
-    "image": "art-26.jpeg"
+    "image": "art-26.jpeg",
+    "originalPrice": 900
   },
   {
     "id": 27,
     "name": "تصميم يدوي #27",
     "price": 500,
-    "image": "art-27.jpeg"
+    "image": "art-27.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 28,
     "name": "تصميم يدوي #28",
     "price": 1200,
-    "image": "art-28.jpeg"
+    "image": "art-28.jpeg",
+    "originalPrice": 1550
   },
   {
     "id": 29,
     "name": "تصميم يدوي #29",
     "price": 250,
-    "image": "art-29.jpeg"
+    "image": "art-29.jpeg",
+    "originalPrice": 350
   },
   {
     "id": 30,
     "name": "تصميم يدوي #30",
     "price": 1000,
-    "image": "art-30.jpeg"
+    "image": "art-30.jpeg",
+    "originalPrice": 1300
   },
   {
     "id": 31,
     "name": "تصميم يدوي #31",
     "price": 250,
-    "image": "art-31.jpeg"
+    "image": "art-31.jpeg",
+    "originalPrice": 350
   },
   {
     "id": 32,
     "name": "تصميم يدوي #32",
     "price": 650,
-    "image": "art-32.jpeg"
+    "image": "art-32.jpeg",
+    "originalPrice": 850
   },
   {
     "id": 33,
     "name": "تصميم يدوي #33",
     "price": 350,
-    "image": "art-33.jpeg"
+    "image": "art-33.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 34,
     "name": "تصميم يدوي #34",
     "price": 500,
-    "image": "art-34.jpeg"
+    "image": "art-34.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 35,
     "name": "تصميم يدوي #35",
     "price": 2400,
-    "image": "art-35.jpeg"
+    "image": "art-35.jpeg",
+    "originalPrice": 3100
   },
   {
     "id": 36,
     "name": "تصميم يدوي #36",
     "price": 1800,
-    "image": "art-36.jpeg"
+    "image": "art-36.jpeg",
+    "originalPrice": 2350
   },
   {
     "id": 37,
     "name": "تصميم يدوي #37",
     "price": 500,
-    "image": "art-37.jpeg"
+    "image": "art-37.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 38,
     "name": "تصميم يدوي #38",
     "price": 900,
-    "image": "art-38.jpeg"
+    "image": "art-38.jpeg",
+    "originalPrice": 1150
   },
   {
     "id": 39,
     "name": "تصميم يدوي #39",
     "price": 1400,
-    "image": "art-39.jpeg"
+    "image": "art-39.jpeg",
+    "originalPrice": 1800
   },
   {
     "id": 40,
     "name": "تصميم يدوي #40",
     "price": 250,
-    "image": "art-40.jpeg"
+    "image": "art-40.jpeg",
+    "originalPrice": 350
   },
   {
     "id": 41,
     "name": "تصميم يدوي #41",
     "price": 400,
-    "image": "art-41.jpeg"
+    "image": "art-41.jpeg",
+    "originalPrice": 500
   },
   {
     "id": 42,
     "name": "تصميم يدوي #42",
     "price": 300,
-    "image": "art-42.jpeg"
+    "image": "art-42.jpeg",
+    "originalPrice": 400
   },
   {
     "id": 43,
     "name": "تصميم يدوي #43",
     "price": 200,
-    "image": "art-43.jpeg"
+    "image": "art-43.jpeg",
+    "originalPrice": 250
   },
   {
     "id": 44,
     "name": "تصميم يدوي #44",
     "price": 150,
-    "image": "art-44.jpeg"
+    "image": "art-44.jpeg",
+    "originalPrice": 200
   },
   {
     "id": 45,
     "name": "تصميم يدوي #45",
     "price": 500,
-    "image": "art-45.jpeg"
+    "image": "art-45.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 46,
     "name": "تصميم يدوي #46",
     "price": 350,
-    "image": "art-46.jpeg"
+    "image": "art-46.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 47,
     "name": "تصميم يدوي #47",
     "price": 1500,
-    "image": "art-47.jpeg"
+    "image": "art-47.jpeg",
+    "originalPrice": 1950
   },
   {
     "id": 48,
     "name": "تصميم يدوي #48",
     "price": 500,
-    "image": "art-48.jpeg"
+    "image": "art-48.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 49,
     "name": "تصميم يدوي #49",
     "price": 450,
-    "image": "art-49.jpeg"
+    "image": "art-49.jpeg",
+    "originalPrice": 600
   },
   {
     "id": 50,
     "name": "تصميم يدوي #50",
     "price": 1350,
-    "image": "art-50.jpeg"
+    "image": "art-50.jpeg",
+    "originalPrice": 1750
   },
   {
     "id": 51,
     "name": "تصميم يدوي #51",
     "price": 500,
-    "image": "art-51.jpeg"
+    "image": "art-51.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 52,
     "name": "تصميم يدوي #52",
     "price": 550,
-    "image": "art-52.jpeg"
+    "image": "art-52.jpeg",
+    "originalPrice": 700
   },
   {
     "id": 53,
     "name": "تصميم يدوي #53",
     "price": 400,
-    "image": "art-53.jpeg"
+    "image": "art-53.jpeg",
+    "originalPrice": 500
   },
   {
     "id": 54,
     "name": "تصميم يدوي #54",
     "price": 400,
-    "image": "art-54.jpeg"
+    "image": "art-54.jpeg",
+    "originalPrice": 500
   },
   {
     "id": 55,
     "name": "تصميم يدوي #55",
     "price": 350,
-    "image": "art-55.jpeg"
+    "image": "art-55.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 56,
     "name": "تصميم يدوي #56",
     "price": 650,
-    "image": "art-56.jpeg"
+    "image": "art-56.jpeg",
+    "originalPrice": 850
   },
   {
     "id": 57,
     "name": "تصميم يدوي #57",
     "price": 400,
-    "image": "art-57.jpeg"
+    "image": "art-57.jpeg",
+    "originalPrice": 500
   },
   {
     "id": 58,
     "name": "تصميم يدوي #58",
     "price": 250,
-    "image": "art-58.jpeg"
+    "image": "art-58.jpeg",
+    "originalPrice": 350
   },
   {
     "id": 59,
     "name": "تصميم يدوي #59",
     "price": 600,
-    "image": "art-59.jpeg"
+    "image": "art-59.jpeg",
+    "originalPrice": 800
   },
   {
     "id": 60,
     "name": "تصميم يدوي #60",
     "price": 500,
-    "image": "art-60.jpeg"
+    "image": "art-60.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 61,
     "name": "تصميم يدوي #61",
     "price": 250,
-    "image": "art-61.jpeg"
+    "image": "art-61.jpeg",
+    "originalPrice": 350
   },
   {
     "id": 62,
     "name": "تصميم يدوي #62",
     "price": 500,
-    "image": "art-62.jpeg"
+    "image": "art-62.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 63,
     "name": "تصميم يدوي #63",
     "price": 650,
-    "image": "art-63.jpeg"
+    "image": "art-63.jpeg",
+    "originalPrice": 850
   },
   {
     "id": 64,
     "name": "تصميم يدوي #64",
     "price": 350,
-    "image": "art-64.jpeg"
+    "image": "art-64.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 65,
     "name": "تصميم يدوي #65",
     "price": 600,
-    "image": "art-65.jpeg"
+    "image": "art-65.jpeg",
+    "originalPrice": 800
   },
   {
     "id": 66,
     "name": "تصميم يدوي #66",
     "price": 600,
-    "image": "art-66.jpeg"
+    "image": "art-66.jpeg",
+    "originalPrice": 800
   },
   {
     "id": 67,
     "name": "تصميم يدوي #67",
     "price": 750,
-    "image": "art-67.jpeg"
+    "image": "art-67.jpeg",
+    "originalPrice": 1000
   },
   {
     "id": 68,
     "name": "تصميم يدوي #68",
     "price": 250,
     "image": "art-68.jpeg",
-    "soldOut": true
+    "soldOut": true,
+    "originalPrice": 350
   },
   {
     "id": 69,
     "name": "تصميم يدوي #69",
     "price": 750,
-    "image": "art-69.jpeg"
+    "image": "art-69.jpeg",
+    "originalPrice": 1000
   },
   {
     "id": 70,
     "name": "تصميم يدوي #70",
     "price": 500,
-    "image": "art-70.jpeg"
+    "image": "art-70.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 71,
     "name": "تصميم يدوي #71",
     "price": 650,
-    "image": "art-71.jpeg"
+    "image": "art-71.jpeg",
+    "originalPrice": 850
   },
   {
     "id": 72,
     "name": "تصميم يدوي #72",
     "price": 350,
     "image": "art-72.jpeg",
-    "soldOut": true
+    "soldOut": true,
+    "originalPrice": 450
   },
   {
     "id": 73,
     "name": "تصميم يدوي #73",
     "price": 550,
-    "image": "art-73.jpeg"
+    "image": "art-73.jpeg",
+    "originalPrice": 700
   },
   {
     "id": 74,
     "name": "تصميم يدوي #74",
     "price": 500,
     "image": "art-74.jpeg",
-    "soldOut": true
+    "soldOut": true,
+    "originalPrice": 650
   },
   {
     "id": 75,
     "name": "تصميم يدوي #75",
     "price": 550,
     "image": "art-75.jpeg",
-    "soldOut": true
+    "soldOut": true,
+    "originalPrice": 700
   },
   {
     "id": 76,
     "name": "تصميم يدوي #76",
     "price": 300,
-    "image": "art-76.jpeg"
+    "image": "art-76.jpeg",
+    "originalPrice": 400
   },
   {
     "id": 77,
     "name": "تصميم يدوي #77",
     "price": 650,
-    "image": "art-77.jpeg"
+    "image": "art-77.jpeg",
+    "originalPrice": 850
   },
   {
     "id": 78,
     "name": "تصميم يدوي #78",
     "price": 250,
-    "image": "art-78.jpeg"
+    "image": "art-78.jpeg",
+    "originalPrice": 350
   },
   {
     "id": 79,
     "name": "تصميم يدوي #79",
     "price": 450,
-    "image": "art-79.jpeg"
+    "image": "art-79.jpeg",
+    "originalPrice": 600
   },
   {
     "id": 80,
     "name": "تصميم يدوي #80",
     "price": 750,
-    "image": "art-80.jpeg"
+    "image": "art-80.jpeg",
+    "originalPrice": 1000
   },
   {
     "id": 81,
     "name": "تصميم يدوي #81",
     "price": 400,
-    "image": "art-81.jpeg"
+    "image": "art-81.jpeg",
+    "originalPrice": 500
   },
   {
     "id": 82,
     "name": "تصميم يدوي #82",
     "price": 750,
-    "image": "art-82.jpeg"
+    "image": "art-82.jpeg",
+    "originalPrice": 1000
   },
   {
     "id": 83,
     "name": "تصميم يدوي #83",
     "price": 350,
-    "image": "art-83.jpeg"
+    "image": "art-83.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 84,
     "name": "تصميم يدوي #84",
     "price": 350,
-    "image": "art-84.jpeg"
+    "image": "art-84.jpeg",
+    "originalPrice": 450
   },
   {
     "id": 85,
     "name": "تصميم يدوي #85",
     "price": 700,
-    "image": "art-85.jpeg"
+    "image": "art-85.jpeg",
+    "originalPrice": 900
   },
   {
     "id": 86,
     "name": "تصميم يدوي #86",
     "price": 450,
-    "image": "art-86.jpeg"
+    "image": "art-86.jpeg",
+    "originalPrice": 600
   },
   {
     "id": 87,
     "name": "تصميم يدوي #87",
     "price": 700,
-    "image": "art-87.jpeg"
+    "image": "art-87.jpeg",
+    "originalPrice": 900
   },
   {
     "id": 88,
     "name": "تصميم يدوي #88",
     "price": 650,
-    "image": "art-88.jpeg"
+    "image": "art-88.jpeg",
+    "originalPrice": 850
   },
   {
     "id": 89,
     "name": "تصميم يدوي #89",
     "price": 500,
-    "image": "art-89.jpeg"
+    "image": "art-89.jpeg",
+    "originalPrice": 650
   },
   {
     "id": 90,
     "name": "تصميم يدوي #90",
     "price": 175,
-    "image": "art-90.jpeg"
+    "image": "art-90.jpeg",
+    "originalPrice": 250
   },
   {
     "id": 91,
     "name": "تصميم يدوي #91",
     "price": 175,
-    "image": "art-91.jpeg"
+    "image": "art-91.jpeg",
+    "originalPrice": 250
   },
   {
     "id": 92,
     "name": "تصميم يدوي #92",
     "price": 175,
-    "image": "art-92.jpeg"
+    "image": "art-92.jpeg",
+    "originalPrice": 250
   },
   {
     "id": 93,
     "name": "تصميم يدوي #93",
     "price": 250,
-    "image": "art-93.jpeg"
+    "image": "art-93.jpeg",
+    "originalPrice": 350
   },
   {
     "id": 94,
     "name": "تصميم يدوي #94",
     "price": 200,
-    "image": "art-94.jpeg"
+    "image": "art-94.jpeg",
+    "originalPrice": 250
   },
   {
     "id": 95,
     "name": "تصميم يدوي #95",
     "price": 70,
-    "image": "art-95.jpeg"
+    "image": "art-95.jpeg",
+    "originalPrice": 100
   },
   {
     "id": 96,
     "name": "تصميم يدوي #96",
     "price": 550,
-    "image": "art-96.jpeg"
+    "image": "art-96.jpeg",
+    "originalPrice": 700
   }
 ]
