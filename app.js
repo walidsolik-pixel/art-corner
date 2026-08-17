@@ -388,6 +388,47 @@ function closeLightbox() {
   document.body.style.overflow = "";
 }
 
+/* ---------------- Live visitor presence badge ----------------
+   One tiny GET every ~25s to the same order backend — no new server, no
+   library, and it's deferred to run-when-idle so it never competes with
+   the page's own render. If it ever fails, it just fails silently and
+   the badge stays hidden; it never blocks or slows anything else. */
+
+const PRESENCE_SESSION_KEY = "amira_art_corner_sid";
+const PRESENCE_INTERVAL_MS = 25000;
+
+function getSessionId() {
+  let sid = sessionStorage.getItem(PRESENCE_SESSION_KEY);
+  if (!sid) {
+    sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+    sessionStorage.setItem(PRESENCE_SESSION_KEY, sid);
+  }
+  return sid;
+}
+
+async function sendPresenceHeartbeat() {
+  try {
+    // "vid", not "sid"/"session" — those two names break the Apps Script
+    // exec redirect on Google's end (confirmed by testing).
+    const res = await fetch(`${ORDERS_WEBAPP_URL}?action=presence&vid=${encodeURIComponent(getSessionId())}`);
+    const data = await res.json();
+    if (typeof data.online !== "number") return;
+    const badge = document.getElementById("liveBadge");
+    const countEl = document.getElementById("liveCount");
+    if (badge && countEl) {
+      countEl.textContent = data.online;
+      badge.hidden = false;
+    }
+  } catch (e) {
+    // Nice-to-have only — never worth surfacing an error for.
+  }
+}
+
+function startPresenceHeartbeat() {
+  sendPresenceHeartbeat();
+  setInterval(sendPresenceHeartbeat, PRESENCE_INTERVAL_MS);
+}
+
 function openCart() {
   document.getElementById("cartDrawer").classList.add("open");
   document.getElementById("cartOverlay").classList.add("open");
@@ -618,8 +659,10 @@ async function init() {
   // it once the browser is idle instead of competing with the initial render.
   if ("requestIdleCallback" in window) {
     requestIdleCallback(injectProductSchema);
+    requestIdleCallback(startPresenceHeartbeat);
   } else {
     setTimeout(injectProductSchema, 200);
+    setTimeout(startPresenceHeartbeat, 300);
   }
 
   if (productParam) {

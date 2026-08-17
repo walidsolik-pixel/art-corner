@@ -50,6 +50,7 @@ const TRANSLATIONS = {
     checkoutSuccessClose: "تمام",
     checkoutErrorGeneric: "حصل خطأ، حاول تاني أو تواصل معانا على واتساب",
     ckSelectGovernorateFirst: "اختر المحافظة الأول عشان نحسب الشحن",
+    liveBrowsing: "بيتصفحوا المتجر دلوقتي",
   },
   en: {
     dir: "ltr",
@@ -100,6 +101,7 @@ const TRANSLATIONS = {
     checkoutSuccessClose: "OK",
     checkoutErrorGeneric: "Something went wrong, please try again or message us on WhatsApp",
     ckSelectGovernorateFirst: "Select a governorate first to calculate shipping",
+    liveBrowsing: "browsing the store right now",
   }
 };
 

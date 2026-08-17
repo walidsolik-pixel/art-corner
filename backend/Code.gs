@@ -38,6 +38,13 @@ function doGet(e) {
   if (e.parameter.action === "shipping") {
     return jsonResponse({ shipping: getAllShipping(getOrCreateSpreadsheet()) });
   }
+  if (e.parameter.action === "presence") {
+    // NOTE: the query param is named "vid" (visitor id), deliberately NOT
+    // "sid"/"session" — Google's front end silently breaks the exec
+    // redirect for those two param names (confirmed by testing), so this
+    // naming isn't cosmetic.
+    return jsonResponse({ online: trackPresence(e.parameter.vid) });
+  }
   return jsonResponse({ ok: true, service: "art-corner-orders" });
 }
 
@@ -217,6 +224,31 @@ function sha256Hex(input) {
   return bytes.map(function (b) {
     return ("0" + (b & 0xff).toString(16)).slice(-2);
   }).join("");
+}
+
+/* ---------------- Live visitor presence ----------------
+   A cheap "N people browsing now" counter. Deliberately NOT backed by the
+   Sheet — it uses CacheService (in-memory, fast) so it costs nothing extra
+   in quota or latency no matter how often visitors heartbeat. Approximate
+   by design (no lock): a lost race just self-corrects on the next
+   heartbeat ~25s later, which is fine for a vanity counter. */
+
+const PRESENCE_CACHE_KEY = "online_visitors";
+const PRESENCE_TTL_SECONDS = 90; // drop a visitor from the count after this long without a heartbeat
+const PRESENCE_CACHE_EXPIRY_SECONDS = 21600; // 6h, CacheService's own max — TTL above is what actually prunes
+
+function trackPresence(sessionId) {
+  const id = sessionId || ("anon-" + Math.random());
+  const cache = CacheService.getScriptCache();
+  const raw = cache.get(PRESENCE_CACHE_KEY);
+  const now = Date.now();
+  const map = raw ? JSON.parse(raw) : {};
+  map[id] = now;
+  Object.keys(map).forEach(function (k) {
+    if (now - map[k] > PRESENCE_TTL_SECONDS * 1000) delete map[k];
+  });
+  cache.put(PRESENCE_CACHE_KEY, JSON.stringify(map), PRESENCE_CACHE_EXPIRY_SECONDS);
+  return Object.keys(map).length;
 }
 
 /* ---------------- Helpers ---------------- */
