@@ -28,7 +28,7 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Cairo", "Tahoma", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Tahoma", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 html[dir="rtl"] body { direction: rtl; }
