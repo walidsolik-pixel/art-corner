@@ -382,7 +382,6 @@ async function init() {
 
   const res = await fetch("products.json");
   PRODUCTS = await res.json();
-  injectProductSchema();
 
   const params = new URLSearchParams(window.location.search);
   const productParam = params.get("p");
@@ -395,6 +394,14 @@ async function init() {
   render();
   renderCartBadge();
   renderCartDrawer();
+
+  // Structured data is only for crawlers, not for the visible page, so build
+  // it once the browser is idle instead of competing with the initial render.
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(injectProductSchema);
+  } else {
+    setTimeout(injectProductSchema, 200);
+  }
 
   if (productParam) {
     document.getElementById("grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
