@@ -49,6 +49,22 @@ function trackPixel(event, params) {
   if (typeof fbq === "function") fbq("track", event, params);
 }
 
+/* ---------------- GA4 events (mirrors the Pixel events above so we get a
+   funnel + per-product interest breakdown in Google Analytics too) ------ */
+
+function trackGA(event, params) {
+  if (typeof gtag === "function") gtag("event", event, params);
+}
+
+function gaItem(product, qty) {
+  return {
+    item_id: String(product.id),
+    item_name: productName(product),
+    price: product.price,
+    quantity: qty || 1,
+  };
+}
+
 /* ---------------- Cart storage ---------------- */
 
 function getCart() {
@@ -78,6 +94,11 @@ function addToCart(productId) {
       content_name: productName(product),
       value: product.price,
       currency: "EGP",
+    });
+    trackGA("add_to_cart", {
+      currency: "EGP",
+      value: product.price,
+      items: [gaItem(product)],
     });
   }
 }
@@ -186,6 +207,35 @@ function buildCheckoutMessage() {
   return lines.join("\n");
 }
 
+/* ---------------- Product image lightbox (click-to-zoom) ----------------
+   Reuses the already-loaded <img> element (currentSrc, whichever the
+   <picture> already picked and downloaded — webp or jpeg fallback) so
+   opening the zoom costs zero extra network requests and can't slow the
+   site down, no matter how many products/images the catalog grows to. */
+
+function openLightbox(product, imgEl) {
+  const overlay = document.getElementById("lightboxOverlay");
+  const img = document.getElementById("lightboxImg");
+  if (!overlay || !img) return;
+  img.src = imgEl.currentSrc || imgEl.src;
+  img.alt = imgEl.alt;
+  overlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  trackGA("view_item", {
+    currency: "EGP",
+    value: product.price,
+    items: [gaItem(product)],
+  });
+}
+
+function closeLightbox() {
+  const overlay = document.getElementById("lightboxOverlay");
+  if (!overlay) return;
+  overlay.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
 function openCart() {
   document.getElementById("cartDrawer").classList.add("open");
   document.getElementById("cartOverlay").classList.add("open");
@@ -274,7 +324,7 @@ function render() {
     if (p.soldOut) {
       return `
       <div class="card sold-out">
-        <div class="thumb">
+        <div class="thumb" data-zoom-id="${p.id}">
           <picture>
             <source srcset="${webpSrc(p.image)}" type="image/webp" />
             <img src="${p.image}" alt="${productName(p)}" ${imgAttrs} width="600" height="600" />
@@ -295,7 +345,7 @@ function render() {
 
     return `
     <div class="card">
-      <div class="thumb">
+      <div class="thumb" data-zoom-id="${p.id}">
         <picture>
           <source srcset="${webpSrc(p.image)}" type="image/webp" />
           <img src="${p.image}" alt="${productName(p)}" ${imgAttrs} width="600" height="600" />
@@ -341,7 +391,20 @@ function render() {
           currency: "EGP",
           num_items: 1,
         });
+        trackGA("begin_checkout", {
+          currency: "EGP",
+          value: product.price,
+          items: [gaItem(product)],
+        });
       }
+    });
+  });
+
+  grid.querySelectorAll(".thumb[data-zoom-id]").forEach(thumb => {
+    thumb.addEventListener("click", () => {
+      const product = PRODUCTS.find(p => String(p.id) === thumb.dataset.zoomId);
+      const imgEl = thumb.querySelector("img");
+      if (product && imgEl) openLightbox(product, imgEl);
     });
   });
 }
@@ -414,12 +477,20 @@ async function init() {
         value: product.price,
         currency: "EGP",
       });
+      trackGA("view_item", {
+        currency: "EGP",
+        value: product.price,
+        items: [gaItem(product)],
+      });
     }
   } else {
     trackPixel("ViewContent", {
       content_ids: PRODUCTS.map(p => String(p.id)),
       content_type: "product_group",
       currency: "EGP",
+    });
+    trackGA("view_item_list", {
+      items: PRODUCTS.map(p => gaItem(p)),
     });
   }
 
@@ -455,8 +526,24 @@ async function init() {
       currency: "EGP",
       num_items: cartCount(),
     });
+    trackGA("begin_checkout", {
+      currency: "EGP",
+      value: cartTotal(),
+      items: ids
+        .map(id => PRODUCTS.find(p => String(p.id) === id))
+        .filter(Boolean)
+        .map(p => gaItem(p, cart[p.id])),
+    });
     const msg = encodeURIComponent(buildCheckoutMessage());
     window.open(`${WHATSAPP_URL}?text=${msg}`, "_blank", "noopener");
+  });
+
+  document.getElementById("lightboxCloseBtn")?.addEventListener("click", closeLightbox);
+  document.getElementById("lightboxOverlay")?.addEventListener("click", (e) => {
+    if (e.target.id === "lightboxOverlay") closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
   });
 }
 
