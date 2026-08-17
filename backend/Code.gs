@@ -234,7 +234,7 @@ function sha256Hex(input) {
    heartbeat ~25s later, which is fine for a vanity counter. */
 
 const PRESENCE_CACHE_KEY = "online_visitors";
-const PRESENCE_TTL_SECONDS = 90; // drop a visitor from the count after this long without a heartbeat
+const PRESENCE_TTL_SECONDS = 35; // drop a visitor from the count after this long without a heartbeat (~3.5x the 10s client interval)
 const PRESENCE_CACHE_EXPIRY_SECONDS = 21600; // 6h, CacheService's own max — TTL above is what actually prunes
 
 function trackPresence(sessionId) {

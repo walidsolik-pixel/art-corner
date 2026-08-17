@@ -395,7 +395,7 @@ function closeLightbox() {
    the badge stays hidden; it never blocks or slows anything else. */
 
 const PRESENCE_SESSION_KEY = "amira_art_corner_sid";
-const PRESENCE_INTERVAL_MS = 25000;
+const PRESENCE_INTERVAL_MS = 10000;
 
 function getSessionId() {
   let sid = sessionStorage.getItem(PRESENCE_SESSION_KEY);
