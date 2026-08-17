@@ -42,6 +42,7 @@
   </div>
 </div>
 
+<main>
 <div class="page-content" id="pageAr">
   <h1>تواصل معنا</h1>
   <p>عايزة تطلبي لوحة، أو عندك سؤال عن مقاس أو خامة معينة؟ إحنا في انتظارك.</p>
@@ -57,16 +58,16 @@
 
   <form class="contact-form" id="contactFormAr">
     <div>
-      <label>الاسم</label>
-      <input type="text" name="name" required />
+      <label for="nameAr">الاسم</label>
+      <input id="nameAr" type="text" name="name" required />
     </div>
     <div>
-      <label>رقم الموبايل</label>
-      <input type="tel" name="phone" required />
+      <label for="phoneAr">رقم الموبايل</label>
+      <input id="phoneAr" type="tel" name="phone" required />
     </div>
     <div>
-      <label>رسالتك</label>
-      <textarea name="message" placeholder="اكتبي تفاصيل الطلب أو السؤال هنا..."></textarea>
+      <label for="messageAr">رسالتك</label>
+      <textarea id="messageAr" name="message" placeholder="اكتبي تفاصيل الطلب أو السؤال هنا..."></textarea>
     </div>
     <button type="submit">إرسال عبر واتساب</button>
   </form>
@@ -87,20 +88,21 @@
 
   <form class="contact-form" id="contactFormEn">
     <div>
-      <label>Name</label>
-      <input type="text" name="name" required />
+      <label for="nameEn">Name</label>
+      <input id="nameEn" type="text" name="name" required />
     </div>
     <div>
-      <label>Phone number</label>
-      <input type="tel" name="phone" required />
+      <label for="phoneEn">Phone number</label>
+      <input id="phoneEn" type="tel" name="phone" required />
     </div>
     <div>
-      <label>Your message</label>
-      <textarea name="message" placeholder="Write your order details or question here..."></textarea>
+      <label for="messageEn">Your message</label>
+      <textarea id="messageEn" name="message" placeholder="Write your order details or question here..."></textarea>
     </div>
     <button type="submit">Send via WhatsApp</button>
   </form>
 </div>
+</main>
 
 <footer>
   <p>

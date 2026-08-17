@@ -30,6 +30,10 @@ function discountPercent(product) {
   return Math.round((1 - price / orig) * 100);
 }
 
+function webpSrc(image) {
+  return image.replace(/\.jpe?g$/i, ".webp");
+}
+
 function whatsappLink(product) {
   const lang = getLang();
   const msg = encodeURIComponent(t().orderMsg(productName(product), formatPrice(product.price, lang)));
@@ -256,15 +260,22 @@ function render() {
     return;
   }
 
-  grid.innerHTML = items.map(p => {
+  grid.innerHTML = items.map((p, idx) => {
     const orig = originalPrice(p);
     const pct = discountPercent(p);
+    // The first card in the grid is the LCP candidate: load it eagerly with
+    // high priority instead of lazily, so the browser discovers and fetches
+    // it immediately rather than waiting to notice it after layout.
+    const imgAttrs = idx === 0 ? `fetchpriority="high"` : `loading="lazy"`;
 
     if (p.soldOut) {
       return `
       <div class="card sold-out">
         <div class="thumb">
-          <img src="${p.image}" alt="${productName(p)}" loading="lazy" />
+          <picture>
+            <source srcset="${webpSrc(p.image)}" type="image/webp" />
+            <img src="${p.image}" alt="${productName(p)}" ${imgAttrs} width="600" height="600" />
+          </picture>
           <span class="discount-badge sold-out-badge">${T.soldOut}</span>
         </div>
         <div class="card-body">
@@ -282,7 +293,10 @@ function render() {
     return `
     <div class="card">
       <div class="thumb">
-        <img src="${p.image}" alt="${productName(p)}" loading="lazy" />
+        <picture>
+          <source srcset="${webpSrc(p.image)}" type="image/webp" />
+          <img src="${p.image}" alt="${productName(p)}" ${imgAttrs} width="600" height="600" />
+        </picture>
         <span class="discount-badge">-${pct}%</span>
       </div>
       <div class="card-body">

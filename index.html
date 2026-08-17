@@ -11,6 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=optional" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="styles.css" />
+<link rel="preload" href="products.json" as="fetch" crossorigin />
+<link rel="preload" href="app.js" as="script" />
+<link rel="preload" href="i18n.js" as="script" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RPZ3MVBBSG"></script>
 <script defer src="ga.js"></script>
 <script defer src="pixel.js"></script>
@@ -59,6 +62,7 @@
   </div>
 </div>
 
+<main>
 <div class="hero">
   <h1 data-i18n="heroTitle">Art Corner</h1>
   <p data-i18n="heroSubtitle">Hand crafted pieces made with love ❤️ — قطع ديكور وهدايا مميزة يدوية الصنع. تصفح التشكيلة كاملة واطلب اللي يعجبك مباشرة.</p>
@@ -69,6 +73,7 @@
     <input id="searchInput" type="text" data-i18n-placeholder="searchPlaceholder" placeholder="ابحث برقم المنتج..." />
   </div>
   <div class="sort-box">
+    <label for="sortSelect" class="sr-only" data-i18n="sortSelectLabel">ترتيب المنتجات</label>
     <select id="sortSelect">
       <option value="default">الترتيب الافتراضي</option>
       <option value="price-asc">السعر: من الأقل للأعلى</option>
@@ -81,6 +86,7 @@
 <div class="grid" id="grid">
   <div class="empty-state" data-i18n="loading">جاري تحميل المنتجات...</div>
 </div>
+</main>
 
 <footer>
   <p>
