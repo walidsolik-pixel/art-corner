@@ -208,6 +208,7 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 22px;
+  min-height: 70vh; /* reserve space before products load, to avoid layout shift */
 }
 
 .card {
