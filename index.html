@@ -80,13 +80,56 @@
     <h2 data-i18n="cartTitle">سلة المشتريات</h2>
     <button class="cart-close" id="cartCloseBtn" type="button">✕</button>
   </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-footer">
-    <div class="cart-total-row">
-      <span data-i18n="total">الإجمالي</span>
-      <span id="cartTotal">0 ج.م</span>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-summary" id="cartSummary">
+      <div class="cart-row">
+        <span data-i18n="subtotal">الإجمالي قبل الشحن</span>
+        <span id="cartSubtotal">0 ج.م</span>
+      </div>
+      <div class="cart-row">
+        <span data-i18n="shippingFee">مصاريف الشحن</span>
+        <span id="cartShipping">—</span>
+      </div>
+      <div class="cart-row cart-row-total">
+        <span data-i18n="total">الإجمالي الكلي</span>
+        <span id="cartTotal">0 ج.م</span>
+      </div>
     </div>
-    <button class="cart-checkout-btn" id="cartCheckoutBtn" type="button" data-i18n="checkout">إتمام الطلب عبر واتساب</button>
+
+    <form class="checkout-form" id="checkoutForm" novalidate>
+      <div class="checkout-error" id="checkoutError" hidden></div>
+
+      <label>
+        <span data-i18n="ckName">الاسم بالكامل</span>
+        <input type="text" id="ckName" autocomplete="name" required />
+      </label>
+      <label>
+        <span data-i18n="ckPhone">رقم الموبايل</span>
+        <input type="tel" id="ckPhone" placeholder="01xxxxxxxxx" autocomplete="tel" required />
+      </label>
+      <label>
+        <span data-i18n="ckGovernorate">المحافظة</span>
+        <select id="ckGovernorate" required>
+          <option value="" data-i18n="ckGovernoratePlaceholder">اختر المحافظة</option>
+        </select>
+      </label>
+      <label>
+        <span data-i18n="ckAddress">العنوان بالتفصيل</span>
+        <textarea id="ckAddress" required data-i18n-placeholder="ckAddressPlaceholder" placeholder="الشارع، رقم العمارة والدور، أقرب علامة مميزة..."></textarea>
+      </label>
+      <label>
+        <span data-i18n="ckNotes">ملاحظات (اختياري)</span>
+        <textarea id="ckNotes"></textarea>
+      </label>
+
+      <div class="payment-note" data-i18n="paymentNote">💵 الدفع عند الاستلام (شامل مصاريف الشحن)</div>
+
+      <button type="submit" class="cart-checkout-btn" id="cartCheckoutBtn" data-i18n="checkout">تأكيد الطلب</button>
+    </form>
+
+    <div class="checkout-success" id="checkoutSuccess" hidden></div>
   </div>
 </div>
 

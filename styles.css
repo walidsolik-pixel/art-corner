@@ -467,11 +467,13 @@ footer .social-icons { justify-content: center; margin-top: 14px; }
   line-height: 1;
 }
 
-.cart-items {
+.cart-body {
   flex: 1;
   overflow-y: auto;
-  padding: 12px 20px;
+  padding: 12px 20px 22px;
 }
+
+.cart-items { padding: 0; }
 
 .cart-item {
   display: flex;
@@ -559,6 +561,109 @@ footer .social-icons { justify-content: center; margin-top: 14px; }
 
 .cart-checkout-btn:hover { background: #0b7a70; }
 .cart-checkout-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---------- Checkout: shipping summary + address form ---------- */
+
+.cart-summary {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 2px;
+  margin: 6px 0 18px;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--muted);
+  padding: 4px 0;
+}
+
+.cart-row-total {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  padding-top: 8px;
+  margin-top: 4px;
+  border-top: 1px dashed var(--line);
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkout-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.checkout-form input,
+.checkout-form select,
+.checkout-form textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: #fff;
+}
+
+.checkout-form textarea { min-height: 64px; resize: vertical; }
+
+.checkout-form input:focus,
+.checkout-form select:focus,
+.checkout-form textarea:focus {
+  outline: none;
+  border-color: var(--turquoise);
+}
+
+.checkout-error {
+  background: #fdecea;
+  color: var(--sale);
+  border: 1px solid #f3c6c2;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.payment-note {
+  background: #f3f9f8;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--turquoise-dark);
+  text-align: center;
+}
+
+.checkout-success {
+  text-align: center;
+  padding: 40px 10px;
+}
+
+.checkout-success-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--turquoise-dark);
+  margin-bottom: 12px;
+}
+
+.checkout-success-body {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.9;
+  margin-bottom: 22px;
+}
 
 /* ---------- Product image lightbox (click-to-zoom) ---------- */
 

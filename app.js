@@ -3,10 +3,31 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 const CART_KEY = "amira_art_corner_cart";
 const DISCOUNT_MARKUP = 1.3; // "before discount" price = sale price * 1.3
 
+// Google Apps Script Web App that receives orders — logs to Sheets, alerts
+// the seller on WhatsApp, and reports Purchase to Meta Conversions API.
+// Filled in once the backend/ Code.gs script is deployed (see backend/README).
+const ORDERS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxdWFWzjk6ntqRpmqqUUjR-X5-P8EiAGqBNXyXmrGvnGoKgwBv_isyOakd60aO2tLg/exec";
+
+// Used to fill the governorate dropdown and show a live shipping estimate
+// even before the live rates (fetched from the sheet) have loaded — the
+// server always recomputes the authoritative fee from the sheet itself.
+const FALLBACK_SHIPPING_RATES = {
+  "القاهرة": 50, "الجيزة": 50, "القليوبية": 55,
+  "الإسكندرية": 65, "البحيرة": 70, "الغربية": 65, "المنوفية": 60,
+  "الدقهلية": 65, "كفر الشيخ": 70, "دمياط": 70, "الشرقية": 65,
+  "بورسعيد": 70, "الإسماعيلية": 70, "السويس": 70,
+  "شمال سيناء": 100, "جنوب سيناء": 100,
+  "بني سويف": 65, "الفيوم": 65, "المنيا": 75, "أسيوط": 80,
+  "سوهاج": 85, "قنا": 90, "الأقصر": 95, "أسوان": 100,
+  "البحر الأحمر": 100, "مطروح": 100, "الوادي الجديد": 110,
+};
+
 let PRODUCTS = [];
 let currentSort = "default";
 let currentQuery = "";
 let pinnedProductId = null;
+let SHIPPING_RATES = { ...FALLBACK_SHIPPING_RATES };
+let checkoutSubmitting = false;
 
 function formatPrice(p, lang) {
   const locale = lang === "en" ? "en-US" : "en-US";
@@ -37,16 +58,15 @@ function webpSrc(image) {
   return image.replace(/\.jpe?g$/i, ".webp");
 }
 
-function whatsappLink(product) {
-  const lang = getLang();
-  const msg = encodeURIComponent(t().orderMsg(productName(product), formatPrice(product.price, lang)));
-  return `${WHATSAPP_URL}?text=${msg}`;
-}
-
 /* ---------------- Meta Pixel events ---------------- */
 
-function trackPixel(event, params) {
-  if (typeof fbq === "function") fbq("track", event, params);
+// eventId is optional — pass it for Purchase so the server-side Conversions
+// API call (Code.gs) can report the exact same event and Meta de-duplicates
+// the two instead of double-counting.
+function trackPixel(event, params, eventId) {
+  if (typeof fbq !== "function") return;
+  if (eventId) fbq("track", event, params, { eventID: eventId });
+  else fbq("track", event, params);
 }
 
 /* ---------------- GA4 events (mirrors the Pixel events above so we get a
@@ -126,7 +146,7 @@ function cartCount() {
   return Object.values(cart).reduce((a, b) => a + b, 0);
 }
 
-function cartTotal() {
+function cartSubtotal() {
   const cart = getCart();
   let total = 0;
   for (const id in cart) {
@@ -134,6 +154,21 @@ function cartTotal() {
     if (product) total += product.price * cart[id];
   }
   return total;
+}
+
+function cartItemsList() {
+  const cart = getCart();
+  return Object.keys(cart)
+    .map(id => {
+      const product = PRODUCTS.find(p => String(p.id) === String(id));
+      return product ? { id: product.id, name: productName(product), qty: cart[id], price: product.price } : null;
+    })
+    .filter(Boolean);
+}
+
+function shippingFeeFor(governorate) {
+  if (!governorate) return null;
+  return SHIPPING_RATES[governorate] ?? null;
 }
 
 function renderCartBadge() {
@@ -148,8 +183,9 @@ function renderCartDrawer() {
   const ids = Object.keys(cart);
   const lang = getLang();
   const T = t();
+  const isEmpty = ids.length === 0;
 
-  if (ids.length === 0) {
+  if (isEmpty) {
     container.innerHTML = `<div class="cart-empty">${T.cartEmpty}</div>`;
   } else {
     container.innerHTML = ids.map(id => {
@@ -174,9 +210,12 @@ function renderCartDrawer() {
     }).join("");
   }
 
-  document.getElementById("cartTotal").textContent = formatPrice(cartTotal(), lang);
+  document.getElementById("cartSummary").hidden = isEmpty;
+  document.getElementById("checkoutForm").hidden = isEmpty;
+  updateCartSummary();
+
   const checkoutBtn = document.getElementById("cartCheckoutBtn");
-  checkoutBtn.disabled = ids.length === 0;
+  if (checkoutBtn) checkoutBtn.disabled = isEmpty || checkoutSubmitting;
 
   container.querySelectorAll("button[data-action]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -189,22 +228,135 @@ function renderCartDrawer() {
   });
 }
 
-function buildCheckoutMessage() {
-  const cart = getCart();
+function updateCartSummary() {
   const lang = getLang();
   const T = t();
-  const lines = [T.checkoutIntro];
-  let total = 0;
-  for (const id in cart) {
-    const product = PRODUCTS.find(p => String(p.id) === String(id));
-    if (!product) continue;
-    const qty = cart[id];
-    const lineTotal = product.price * qty;
-    total += lineTotal;
-    lines.push(`- ${productName(product)} × ${qty} = ${formatPrice(lineTotal, lang)}`);
+  const subtotal = cartSubtotal();
+  const governorate = document.getElementById("ckGovernorate")?.value || "";
+  const fee = shippingFeeFor(governorate);
+
+  document.getElementById("cartSubtotal").textContent = formatPrice(subtotal, lang);
+  document.getElementById("cartShipping").textContent = fee === null ? "—" : formatPrice(fee, lang);
+  document.getElementById("cartTotal").textContent = formatPrice(subtotal + (fee || 0), lang);
+}
+
+/* ---------------- Shipping rates (governorate dropdown) ---------------- */
+
+async function loadShippingRates() {
+  try {
+    const res = await fetch(`${ORDERS_WEBAPP_URL}?action=shipping`);
+    const data = await res.json();
+    if (data && data.shipping) SHIPPING_RATES = data.shipping;
+  } catch (e) {
+    // Backend unreachable (or not deployed yet) — keep using the fallback
+    // table above so the dropdown and estimate still work.
   }
-  lines.push(`${T.checkoutTotal}: ${formatPrice(total, lang)}`);
-  return lines.join("\n");
+  populateGovernorateSelect();
+}
+
+function populateGovernorateSelect() {
+  const select = document.getElementById("ckGovernorate");
+  if (!select) return;
+  const current = select.value;
+  const T = t();
+  select.innerHTML = `<option value="">${T.ckGovernoratePlaceholder}</option>` +
+    Object.keys(SHIPPING_RATES).map(gov =>
+      `<option value="${gov}">${gov} — ${formatPrice(SHIPPING_RATES[gov], getLang())}</option>`
+    ).join("");
+  if (current && SHIPPING_RATES[current] !== undefined) select.value = current;
+}
+
+/* ---------------- Checkout submission ---------------- */
+
+function showCheckoutError(message) {
+  const el = document.getElementById("checkoutError");
+  if (!el) return;
+  el.textContent = message;
+  el.hidden = !message;
+}
+
+function showCheckoutSuccess(orderId, total) {
+  const T = t();
+  const lang = getLang();
+  document.getElementById("checkoutForm").hidden = true;
+  document.getElementById("cartSummary").hidden = true;
+  document.getElementById("cartItems").innerHTML = "";
+  const successEl = document.getElementById("checkoutSuccess");
+  successEl.hidden = false;
+  successEl.innerHTML = `
+    <div class="checkout-success-title">${T.checkoutSuccessTitle}</div>
+    <div class="checkout-success-body">${T.checkoutSuccessBody(orderId, formatPrice(total, lang)).replace(/\n/g, "<br>")}</div>
+    <button class="cart-checkout-btn" id="checkoutSuccessCloseBtn" type="button">${T.checkoutSuccessClose}</button>
+  `;
+  document.getElementById("checkoutSuccessCloseBtn").addEventListener("click", () => {
+    successEl.hidden = true;
+    closeCart();
+  });
+}
+
+async function submitCheckout(e) {
+  e.preventDefault();
+  if (checkoutSubmitting) return;
+
+  const T = t();
+  const name = document.getElementById("ckName").value.trim();
+  const phone = document.getElementById("ckPhone").value.trim();
+  const governorate = document.getElementById("ckGovernorate").value;
+  const address = document.getElementById("ckAddress").value.trim();
+  const notes = document.getElementById("ckNotes").value.trim();
+
+  if (!name || name.length < 2) return showCheckoutError(T.ckName + " *");
+  if (!/^01[0-9]{9}$/.test(phone)) return showCheckoutError(T.ckPhone + " *");
+  if (!governorate) return showCheckoutError(T.ckSelectGovernorateFirst);
+  if (!address || address.length < 5) return showCheckoutError(T.ckAddress + " *");
+  showCheckoutError(null);
+
+  const items = cartItemsList();
+  if (items.length === 0) return;
+
+  const eventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+  const submitBtn = document.getElementById("cartCheckoutBtn");
+  checkoutSubmitting = true;
+  submitBtn.disabled = true;
+  const originalLabel = submitBtn.textContent;
+  submitBtn.textContent = T.checkoutSubmitting;
+
+  try {
+    const res = await fetch(ORDERS_WEBAPP_URL, {
+      method: "POST",
+      // text/plain avoids a CORS preflight (Apps Script Web Apps can't
+      // handle OPTIONS) — the body is still JSON, Code.gs parses it as such.
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ name, phone, governorate, address, notes, items, event_id: eventId }),
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error || "order failed");
+
+    trackPixel("Purchase", {
+      value: data.total,
+      currency: "EGP",
+      content_ids: items.map(it => String(it.id)),
+      content_type: "product",
+      num_items: items.reduce((s, it) => s + it.qty, 0),
+    }, eventId);
+    trackGA("purchase", {
+      transaction_id: data.orderId,
+      value: data.total,
+      shipping: data.shipping,
+      currency: "EGP",
+      items: items.map(it => gaItem(PRODUCTS.find(p => String(p.id) === String(it.id)), it.qty)),
+    });
+
+    saveCart({});
+    renderCartBadge();
+    showCheckoutSuccess(data.orderId, data.total);
+  } catch (err) {
+    showCheckoutError(T.checkoutErrorGeneric);
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalLabel;
+  } finally {
+    checkoutSubmitting = false;
+  }
 }
 
 /* ---------------- Product image lightbox (click-to-zoom) ----------------
@@ -359,7 +511,7 @@ function render() {
           <span class="price-sale">${formatPrice(p.price, lang)}</span>
         </div>
         <button class="add-cart-btn" data-add-id="${p.id}" type="button">${T.addToCart}</button>
-        <a class="order-btn" data-order-id="${p.id}" href="${whatsappLink(p)}" target="_blank" rel="noopener">${T.orderNow}</a>
+        <button class="order-btn" data-order-id="${p.id}" type="button">${T.orderNow}</button>
       </div>
     </div>
   `;
@@ -379,24 +531,28 @@ function render() {
     });
   });
 
-  grid.querySelectorAll("a[data-order-id]").forEach(link => {
-    link.addEventListener("click", () => {
-      const product = PRODUCTS.find(p => String(p.id) === link.dataset.orderId);
-      if (product) {
-        trackPixel("InitiateCheckout", {
-          content_ids: [String(product.id)],
-          content_type: "product",
-          content_name: productName(product),
-          value: product.price,
-          currency: "EGP",
-          num_items: 1,
-        });
-        trackGA("begin_checkout", {
-          currency: "EGP",
-          value: product.price,
-          items: [gaItem(product)],
-        });
-      }
+  grid.querySelectorAll("button[data-order-id]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const product = PRODUCTS.find(p => String(p.id) === btn.dataset.orderId);
+      if (!product) return;
+      trackPixel("InitiateCheckout", {
+        content_ids: [String(product.id)],
+        content_type: "product",
+        content_name: productName(product),
+        value: product.price,
+        currency: "EGP",
+        num_items: 1,
+      });
+      trackGA("begin_checkout", {
+        currency: "EGP",
+        value: product.price,
+        items: [gaItem(product)],
+      });
+      // "Order now" goes straight into the real cart/checkout form too —
+      // every order flows through the one trackable path (see the WhatsApp
+      // AddToCart-blindspot writeup for why this matters).
+      addToCart(product.id);
+      openCart();
     });
   });
 
@@ -516,27 +672,14 @@ async function init() {
   document.getElementById("cartOverlay")?.addEventListener("click", closeCart);
   document.getElementById("langToggleBtn")?.addEventListener("click", toggleLang);
 
-  document.getElementById("cartCheckoutBtn")?.addEventListener("click", () => {
-    const cart = getCart();
-    const ids = Object.keys(cart);
-    trackPixel("InitiateCheckout", {
-      content_ids: ids,
-      content_type: "product",
-      value: cartTotal(),
-      currency: "EGP",
-      num_items: cartCount(),
-    });
-    trackGA("begin_checkout", {
-      currency: "EGP",
-      value: cartTotal(),
-      items: ids
-        .map(id => PRODUCTS.find(p => String(p.id) === id))
-        .filter(Boolean)
-        .map(p => gaItem(p, cart[p.id])),
-    });
-    const msg = encodeURIComponent(buildCheckoutMessage());
-    window.open(`${WHATSAPP_URL}?text=${msg}`, "_blank", "noopener");
+  loadShippingRates();
+
+  document.getElementById("ckGovernorate")?.addEventListener("change", () => {
+    updateCartSummary();
+    showCheckoutError(null);
   });
+
+  document.getElementById("checkoutForm")?.addEventListener("submit", submitCheckout);
 
   document.getElementById("lightboxCloseBtn")?.addEventListener("click", closeLightbox);
   document.getElementById("lightboxOverlay")?.addEventListener("click", (e) => {
