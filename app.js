@@ -15,6 +15,9 @@ function formatPrice(p, lang) {
 }
 
 function productName(p) {
+  const lang = getLang();
+  if (lang === "en" && p.nameEn) return p.nameEn;
+  if (lang === "ar" && p.name) return p.name;
   return t().productName(p.id);
 }
 
@@ -343,11 +346,43 @@ function render() {
   });
 }
 
+function injectProductSchema() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": PRODUCTS.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "Product",
+        "name": productName(p),
+        "image": `https://art-corner.org/${p.image}`,
+        "url": `https://art-corner.org/index.html?p=${p.id}`,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "EGP",
+          "price": p.price,
+          "availability": p.soldOut ? "https://schema.org/OutOfStock" : "https://schema.org/InStock",
+        },
+      },
+    })),
+  };
+  let script = document.getElementById("product-ld");
+  if (!script) {
+    script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "product-ld";
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(data);
+}
+
 async function init() {
   applyStaticText();
 
   const res = await fetch("products.json");
   PRODUCTS = await res.json();
+  injectProductSchema();
 
   const params = new URLSearchParams(window.location.search);
   const productParam = params.get("p");

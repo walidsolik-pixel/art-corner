@@ -1,678 +1,774 @@
 [
   {
     "id": 1,
-    "name": "تصميم يدوي #1",
+    "name": "لوحة جدارية بخط عربي ذهبي على خلفية خضراء ترابية",
     "price": 800,
     "image": "art-1.jpeg",
-    "originalPrice": 1050
+    "originalPrice": 1050,
+    "nameEn": "Sage-Green Textured Plaque with Golden Arabic Calligraphy"
   },
   {
     "id": 2,
-    "name": "تصميم يدوي #2",
+    "name": "صينية خشبية خضراء بنقشة زهور ملونة وخط عربي",
     "price": 450,
     "image": "art-2.jpeg",
-    "originalPrice": 600
+    "originalPrice": 600,
+    "nameEn": "Sage Wooden Tray with Colorful Floral Pattern and Calligraphy"
   },
   {
     "id": 3,
-    "name": "تصميم يدوي #3",
+    "name": "حامل بخور على شكل درويش متصوف ذهبي اللون",
     "price": 450,
     "image": "art-3.jpeg",
-    "originalPrice": 600
+    "originalPrice": 600,
+    "nameEn": "Golden-Toned Whirling Dervish Incense Holder"
   },
   {
     "id": 4,
-    "name": "تصميم يدوي #4",
+    "name": "طقم فرشاة شعر ومرآة يد بنقش ورود ملون",
     "price": 200,
     "image": "art-4.jpeg",
-    "originalPrice": 250
+    "originalPrice": 250,
+    "nameEn": "Hairbrush and Hand Mirror Set with Colorful Floral Decoupage"
   },
   {
     "id": 5,
-    "name": "تصميم يدوي #5",
+    "name": "علبة شاي خشبية أرجوانية برسمة إبريق وعبارة إنجليزية",
     "price": 500,
     "image": "art-5.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Lavender Wooden Tea Organizer Box with Painted Teapot and Quote"
   },
   {
     "id": 6,
-    "name": "تصميم يدوي #6",
+    "name": "طقم علبة مناديل وسلة مهملات خشبية بنقش دائري بارز",
     "price": 1000,
     "image": "art-6.jpeg",
-    "originalPrice": 1300
+    "originalPrice": 1300,
+    "nameEn": "Sage-Green Wooden Tissue Box and Wastebasket Set with Embossed Medallion"
   },
   {
     "id": 7,
-    "name": "تصميم يدوي #7",
+    "name": "علبة مناديل خشبية زرقاء بنقشة ذهبية زخرفية",
     "price": 500,
     "image": "art-7.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Blue Wooden Tissue Box with Golden Damask Stencil Pattern"
   },
   {
     "id": 8,
-    "name": "تصميم يدوي #8",
+    "name": "طقم تيشيرت وشنطة قماش بطبعة أسماك ملونة",
     "price": 550,
     "image": "art-8.jpeg",
-    "originalPrice": 700
+    "originalPrice": 700,
+    "nameEn": "Printed T-Shirt and Tote Bag Set with Colorful Fish Design"
   },
   {
     "id": 9,
-    "name": "تصميم يدوي #9",
+    "name": "طقم ٦ قطع خشبية معلقة مرسومة بعبارات ورسومات ملونة",
     "price": 125,
     "image": "art-9.jpeg",
-    "originalPrice": 150
+    "originalPrice": 150,
+    "nameEn": "Set of 6 Hand-Painted Wooden Hanging Ornaments with Colorful Designs"
   },
   {
     "id": 10,
-    "name": "تصميم يدوي #10",
+    "name": "علبة مجوهرات خشبية زرقاء منقوش عليها اسم أميرة",
     "price": 900,
     "image": "art-10.jpeg",
-    "originalPrice": 1150
+    "originalPrice": 1150,
+    "nameEn": "Teal Wooden Jewelry Box Engraved with the Name Amira"
   },
   {
     "id": 11,
-    "name": "تصميم يدوي #11",
+    "name": "تيشيرت أطفال أبيض برسمة بطة وعبارة عربية",
     "price": 350,
     "image": "art-11.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "White Kids T-Shirt with Duck Illustration and Arabic Text"
   },
   {
     "id": 12,
-    "name": "تصميم يدوي #12",
+    "name": "تيشيرت أطفال أبيض برسمة فتاة بشعر مجعد وفيونكة وردية",
     "price": 350,
     "image": "art-12.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "White Kids T-Shirt with Curly-Haired Girl and Pink Bow Print"
   },
   {
     "id": 13,
-    "name": "تصميم يدوي #13",
+    "name": "تيشيرت أطفال أبيض برسمة راقصة باليه بألوان هادئة",
     "price": 350,
     "image": "art-13.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "White Kids T-Shirt with Pastel Ballerina Illustration"
   },
   {
     "id": 14,
-    "name": "تصميم يدوي #14",
+    "name": "تيشيرت أطفال أبيض برسمة فتاة بشعر مجعد بخطوط رسم",
     "price": 350,
     "image": "art-14.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "White Kids T-Shirt with Curly-Haired Girl Line Art"
   },
   {
     "id": 15,
-    "name": "تصميم يدوي #15",
+    "name": "طقم ٣ شمعدانات خشبية خضراء مضلعة بارتفاعات متدرجة",
     "price": 1200,
     "image": "art-15.jpeg",
-    "originalPrice": 1550
+    "originalPrice": 1550,
+    "nameEn": "Set of 3 Sage-Green Fluted Candle Holders in Graduated Heights"
   },
   {
     "id": 16,
-    "name": "تصميم يدوي #16",
+    "name": "صينية خشبية زرقاء فاتحة بخط عربي ذهبي",
     "price": 500,
     "image": "art-16.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Light Blue Wooden Tray with Golden Arabic Calligraphy"
   },
   {
     "id": 17,
-    "name": "تصميم يدوي #17",
+    "name": "طقم تقديم أزرق صينية وعلبة مناديل بنقش ذهبي",
     "price": 1200,
     "image": "art-17.jpeg",
-    "originalPrice": 1550
+    "originalPrice": 1550,
+    "nameEn": "Blue Wooden Tray and Tissue Box Set with Golden Stencil Pattern"
   },
   {
     "id": 18,
-    "name": "تصميم يدوي #18",
+    "name": "علبة مجوهرات خشبية فيروزية بنقش شمسي ذهبي",
     "price": 500,
     "image": "art-18.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Turquoise Wooden Jewelry Box with Golden Sunburst Stencil"
   },
   {
     "id": 19,
-    "name": "تصميم يدوي #19",
+    "name": "طقم علبتين خشبيتين للمجوهرات بنقش فراشات ملون",
     "price": 550,
     "image": "art-19.jpeg",
-    "originalPrice": 700
+    "originalPrice": 700,
+    "nameEn": "Set of Two Wooden Jewelry Boxes with Colorful Butterfly Decoupage"
   },
   {
     "id": 20,
-    "name": "تصميم يدوي #20",
+    "name": "صينية خشبية زرقاء فاتحة بخط عربي ذهبي في المنتصف",
     "price": 500,
     "image": "art-20.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Light Blue Wooden Tray with Centered Golden Arabic Calligraphy"
   },
   {
     "id": 21,
-    "name": "تصميم يدوي #21",
+    "name": "صينية خشبية خضراء بحواف منحوتة وأرجل صغيرة",
     "price": 700,
     "image": "art-21.jpeg",
-    "originalPrice": 900
+    "originalPrice": 900,
+    "nameEn": "Sage-Green Carved Wooden Footed Tray with Scalloped Edge"
   },
   {
     "id": 22,
-    "name": "تصميم يدوي #22",
+    "name": "معلق مفاتيح خشبي على شكل منزل برسمة ورود",
     "price": 350,
     "image": "art-22.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "House-Shaped Wooden Key Holder with Floral Painting"
   },
   {
     "id": 23,
-    "name": "تصميم يدوي #23",
+    "name": "علبة خشبية بغطاء وردي بتصميم قلب من قصاصات قماش",
     "price": 450,
     "image": "art-23.jpeg",
-    "originalPrice": 600
+    "originalPrice": 600,
+    "nameEn": "Wooden Box with Pink Lid and Fabric Heart Collage Design"
   },
   {
     "id": 24,
-    "name": "تصميم يدوي #24",
+    "name": "ساعة حائط زرقاء فاتحة بأرقام رومانية ذهبية ونقشة دائرية",
     "price": 750,
     "image": "art-24.jpeg",
-    "originalPrice": 1000
+    "originalPrice": 1000,
+    "nameEn": "Light Blue Wall Clock with Golden Roman Numerals and Medallion Center"
   },
   {
     "id": 25,
-    "name": "تصميم يدوي #25",
+    "name": "علبة مجوهرات خشبية أرجوانية بنقش ذهبي زخرفي",
     "price": 500,
     "image": "art-25.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Purple Wooden Jewelry Box with Golden Decorative Stencil"
   },
   {
     "id": 26,
-    "name": "تصميم يدوي #26",
+    "name": "صينية خشبية بيضاء مزخرفة بمقابض ذهبية منحوتة",
     "price": 700,
     "image": "art-26.jpeg",
-    "originalPrice": 900
+    "originalPrice": 900,
+    "nameEn": "Distressed White Wooden Tray with Carved Golden Scroll Handles"
   },
   {
     "id": 27,
-    "name": "تصميم يدوي #27",
+    "name": "علبة خشبية أرجوانية بغطاء برسمة زهرة ونحلة",
     "price": 500,
     "image": "art-27.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Purple Wooden Box with Flower and Bee Art Print Lid"
   },
   {
     "id": 28,
-    "name": "تصميم يدوي #28",
+    "name": "ساعة مكتب زرقاء مزخرفة بإطار منحوت وأرقام رومانية",
     "price": 1200,
     "image": "art-28.jpeg",
-    "originalPrice": 1550
+    "originalPrice": 1550,
+    "nameEn": "Dusty Blue Ornate Mantel Clock with Carved Frame and Roman Numerals"
   },
   {
     "id": 29,
-    "name": "تصميم يدوي #29",
+    "name": "قطعة خشبية بكلمة Home بخط مزخرف بلون أخضر ترابي",
     "price": 250,
     "image": "art-29.jpeg",
-    "originalPrice": 350
+    "originalPrice": 350,
+    "nameEn": "Sage-Green Wooden Home Cursive Word Decor"
   },
   {
     "id": 30,
-    "name": "تصميم يدوي #30",
+    "name": "صينية خشبية زرقاء لأدوات التجميل بثلاث فتحات منحوتة",
     "price": 1000,
     "image": "art-30.jpeg",
-    "originalPrice": 1300
+    "originalPrice": 1300,
+    "nameEn": "Blue Wooden Vanity Valet Tray with Three Grooming Tool Slots"
   },
   {
     "id": 31,
-    "name": "تصميم يدوي #31",
+    "name": "كلمة عربية خشبية منحوتة بلون أخضر وحواف ذهبية",
     "price": 250,
     "image": "art-31.jpeg",
-    "originalPrice": 350
+    "originalPrice": 350,
+    "nameEn": "Sage-Green Wooden Arabic Word Sculpture with Golden Edges"
   },
   {
     "id": 32,
-    "name": "تصميم يدوي #32",
+    "name": "علبة خشبية خضراء بمقبض ذهبي كروي ونقش زهور بارز",
     "price": 650,
     "image": "art-32.jpeg",
-    "originalPrice": 850
+    "originalPrice": 850,
+    "nameEn": "Sage-Green Wooden Box with Golden Knob and Embossed Floral Sides"
   },
   {
     "id": 33,
-    "name": "تصميم يدوي #33",
+    "name": "صينية خشبية خضراء برسمة إبريق شاي وخط عربي",
     "price": 350,
     "image": "art-33.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "Sage-Green Wooden Tray with Hand-Painted Tea Scene and Arabic Text"
   },
   {
     "id": 34,
-    "name": "تصميم يدوي #34",
+    "name": "طقم مرايا يد للعروس بخط عربي وإطار ذهبي مزخرف",
     "price": 500,
     "image": "art-34.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Bridal Hand Mirror Set with Arabic Calligraphy and Ornate Gold Frame"
   },
   {
     "id": 35,
-    "name": "تصميم يدوي #35",
+    "name": "طقم ٣ شمعدانات خضراء مع صينية خشبية منحوتة",
     "price": 2400,
     "image": "art-35.jpeg",
-    "originalPrice": 3100
+    "originalPrice": 3100,
+    "nameEn": "Set of 3 Sage-Green Candle Holders with Matching Carved Tray"
   },
   {
     "id": 36,
-    "name": "تصميم يدوي #36",
+    "name": "مرآة حائط بإطار فسيفساء ملونة ولون فيروزي",
     "price": 1800,
     "image": "art-36.jpeg",
-    "originalPrice": 2350
+    "originalPrice": 2350,
+    "nameEn": "Teal-Framed Wall Mirror with Colorful Mosaic Tile Inlay"
   },
   {
     "id": 37,
-    "name": "تصميم يدوي #37",
+    "name": "علبة مناديل خشبية رمادية خضراء بخط عربي ذهبي بارز",
     "price": 500,
     "image": "art-37.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Grey-Green Wooden Tissue Box with Raised Golden Arabic Calligraphy"
   },
   {
     "id": 38,
-    "name": "تصميم يدوي #38",
+    "name": "ساعة حائط دائرية بقطاعات رمادية وذهبية هندسية",
     "price": 900,
     "image": "art-38.jpeg",
-    "originalPrice": 1150
+    "originalPrice": 1150,
+    "nameEn": "Round Wall Clock with Geometric Gray and Gold Sectors"
   },
   {
     "id": 39,
-    "name": "تصميم يدوي #39",
+    "name": "طقم ساعة حائط وعلبة مناديل بنقش ذهبي على خلفية خضراء رمادية",
     "price": 1400,
     "image": "art-39.jpeg",
-    "originalPrice": 1800
+    "originalPrice": 1800,
+    "nameEn": "Wall Clock and Tissue Box Set with Golden Pattern on Gray-Green Base"
   },
   {
     "id": 40,
-    "name": "تصميم يدوي #40",
+    "name": "قطعة خشبية بكلمة Relax بلون أزرق ترابي",
     "price": 250,
     "image": "art-40.jpeg",
-    "originalPrice": 350
+    "originalPrice": 350,
+    "nameEn": "Dusty Blue Wooden Relax Script Word Decor"
   },
   {
     "id": 41,
-    "name": "تصميم يدوي #41",
+    "name": "صينية خشبية خضراء برسمة فنجان قهوة وخط عربي",
     "price": 400,
     "image": "art-41.jpeg",
-    "originalPrice": 500
+    "originalPrice": 500,
+    "nameEn": "Sage-Green Wooden Tray with Painted Coffee Cup and Arabic Calligraphy"
   },
   {
     "id": 42,
-    "name": "تصميم يدوي #42",
+    "name": "قطعتان خشبيتان بخط عربي منحوت بلونين أزرق وبني",
     "price": 300,
     "image": "art-42.jpeg",
-    "originalPrice": 400
+    "originalPrice": 400,
+    "nameEn": "Two Carved Wooden Arabic Word Pieces in Blue and Brown Tones"
   },
   {
     "id": 43,
-    "name": "تصميم يدوي #43",
+    "name": "طقم قطعتين خشبيتين معلقتين بنقش ورود وردية على خلفية زرقاء",
     "price": 200,
     "image": "art-43.jpeg",
-    "originalPrice": 250
+    "originalPrice": 250,
+    "nameEn": "Set of Two Hanging Wooden Paddle Plaques with Pink Rose Decoupage"
   },
   {
     "id": 44,
-    "name": "تصميم يدوي #44",
+    "name": "طقم شنطتين قماش بطبعة زهور وألوان مرسومة",
     "price": 150,
     "image": "art-44.jpeg",
-    "originalPrice": 200
+    "originalPrice": 200,
+    "nameEn": "Set of Two Canvas Pouches with Colorful Floral and Figure Prints"
   },
   {
     "id": 45,
-    "name": "تصميم يدوي #45",
+    "name": "علبة مجوهرات خشبية خضراء بنقش وردي دائري",
     "price": 500,
     "image": "art-45.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Sage-Green Wooden Jewelry Box with Pink Medallion Stencil"
   },
   {
     "id": 46,
-    "name": "تصميم يدوي #46",
+    "name": "طقم شنطة قماش وحقيبة صغيرة برسمة منازل ملونة",
     "price": 350,
     "image": "art-46.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "Tote Bag and Pouch Set with Colorful House Illustration Print"
   },
   {
     "id": 47,
-    "name": "تصميم يدوي #47",
+    "name": "لوحة جدارية كبيرة بخط عربي ذهبي بارز على خلفية برونزية",
     "price": 1500,
     "image": "art-47.jpeg",
-    "originalPrice": 1950
+    "originalPrice": 1950,
+    "nameEn": "Large Wall Art Panel with Raised Golden Arabic Calligraphy on Bronze-Toned Background"
   },
   {
     "id": 48,
-    "name": "تصميم يدوي #48",
+    "name": "علبة مجوهرات خشبية زرقاء فاتحة بنقش زهور فضي بارز",
     "price": 500,
     "image": "art-48.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Light Blue Wooden Jewelry Box with Raised Silver-Toned Floral Pattern"
   },
   {
     "id": 49,
-    "name": "تصميم يدوي #49",
+    "name": "علبة مناديل خشبية بلون أخضر فاتح بسيطة",
     "price": 450,
     "image": "art-49.jpeg",
-    "originalPrice": 600
+    "originalPrice": 600,
+    "nameEn": "Pastel Mint Wooden Tissue Box with Distressed Finish"
   },
   {
     "id": 50,
-    "name": "تصميم يدوي #50",
+    "name": "طقم بحري صينية وعلبة مناديل وقطع خشبية بتصميم صيفي",
     "price": 1350,
     "image": "art-50.jpeg",
-    "originalPrice": 1750
+    "originalPrice": 1750,
+    "nameEn": "Coastal-Themed Set with Tray, Tissue Box, and Wooden Cutouts"
   },
   {
     "id": 51,
-    "name": "تصميم يدوي #51",
+    "name": "طقم قطع خشبية بحرية كلمات وأشكال بحرية",
     "price": 500,
     "image": "art-51.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Set of Wooden Coastal Cutouts with Words and Sea-Themed Shapes"
   },
   {
     "id": 52,
-    "name": "تصميم يدوي #52",
+    "name": "صينية خشبية زرقاء فاتحة بطبعة صيفية ملونة",
     "price": 550,
     "image": "art-52.jpeg",
-    "originalPrice": 700
+    "originalPrice": 700,
+    "nameEn": "Light Blue Wooden Tray with Pastel Summer Print"
   },
   {
     "id": 53,
-    "name": "تصميم يدوي #53",
+    "name": "بلوزة سوداء بطبعة فتاة بشعر وردي وعبارة إنجليزية",
     "price": 400,
     "image": "art-53.jpeg",
-    "originalPrice": 500
+    "originalPrice": 500,
+    "nameEn": "Black Long-Sleeve Top with Pink-Haired Figure Print and Text"
   },
   {
     "id": 54,
-    "name": "تصميم يدوي #54",
+    "name": "بلوزة بيضاء برسمة وجه بنظارة شمسية وعبارة إنجليزية",
     "price": 400,
     "image": "art-54.jpeg",
-    "originalPrice": 500
+    "originalPrice": 500,
+    "nameEn": "White Long-Sleeve Top with Abstract Face and Make Fashion Not War Print"
   },
   {
     "id": 55,
-    "name": "تصميم يدوي #55",
+    "name": "تيشيرت أطفال أبيض برسمة النمر الوردي الكرتونية",
     "price": 350,
     "image": "art-55.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "White Kids T-Shirt with Pink Panther Cartoon Print"
   },
   {
     "id": 56,
-    "name": "تصميم يدوي #56",
+    "name": "صينية خشبية زرقاء بمقابض ذهبية منحوتة ونقش زخرفي",
     "price": 650,
     "image": "art-56.jpeg",
-    "originalPrice": 850
+    "originalPrice": 850,
+    "nameEn": "Light Blue Wooden Tray with Carved Golden Scroll Handles and Medallion Stencil"
   },
   {
     "id": 57,
-    "name": "تصميم يدوي #57",
+    "name": "بلوزة سوداء بطبعة نمر بألوان مائية زاهية",
     "price": 400,
     "image": "art-57.jpeg",
-    "originalPrice": 500
+    "originalPrice": 500,
+    "nameEn": "Black Long-Sleeve Top with Colorful Watercolor Panther Print"
   },
   {
     "id": 58,
-    "name": "تصميم يدوي #58",
+    "name": "طقم مساند أكواب خشبية زرقاء بنقش دمشقي بارز",
     "price": 250,
     "image": "art-58.jpeg",
-    "originalPrice": 350
+    "originalPrice": 350,
+    "nameEn": "Set of Blue Wooden Coasters with Embossed Damask Pattern"
   },
   {
     "id": 59,
-    "name": "تصميم يدوي #59",
+    "name": "لوحتان جداريتان بخط عربي ملون على خلفية بيضاء",
     "price": 600,
     "image": "art-59.jpeg",
-    "originalPrice": 800
+    "originalPrice": 800,
+    "nameEn": "Two Wall Art Panels with Colorful Arabic Calligraphy on Whitewashed Wood"
   },
   {
     "id": 60,
-    "name": "تصميم يدوي #60",
+    "name": "علبة مجوهرات خشبية بنقش طيور وأزهار على خلفية زرقاء وردية",
     "price": 500,
     "image": "art-60.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Wooden Jewelry Box with Bird and Blossom Decoupage on Pastel Background"
   },
   {
     "id": 61,
-    "name": "تصميم يدوي #61",
+    "name": "كلمة عربية خشبية منحوتة بلون أبيض كريمي",
     "price": 250,
     "image": "art-61.jpeg",
-    "originalPrice": 350
+    "originalPrice": 350,
+    "nameEn": "Cream White Carved Wooden Arabic Word Decor"
   },
   {
     "id": 62,
-    "name": "تصميم يدوي #62",
+    "name": "صينية خشبية زرقاء فاتحة بنقشة زهرة ذهبية صغيرة",
     "price": 500,
     "image": "art-62.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Light Blue Wooden Tray with Small Golden Floral Emblem"
   },
   {
     "id": 63,
-    "name": "تصميم يدوي #63",
+    "name": "علبة مجوهرات خشبية فيروزية بملمس متشقق ونقش زهور بارز",
     "price": 650,
     "image": "art-63.jpeg",
-    "originalPrice": 850
+    "originalPrice": 850,
+    "nameEn": "Turquoise Wooden Jewelry Box with Crackle Finish and Embossed Floral Sides"
   },
   {
     "id": 64,
-    "name": "تصميم يدوي #64",
+    "name": "شال أسود مطرز برسومات منازل ونخيل ملونة",
     "price": 350,
     "image": "art-64.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "Black Scarf with Colorful Embroidered Houses and Palm Trees"
   },
   {
     "id": 65,
-    "name": "تصميم يدوي #65",
+    "name": "لوحتان جداريتان خشبيتان بخط عربي ملون",
     "price": 600,
     "image": "art-65.jpeg",
-    "originalPrice": 800
+    "originalPrice": 800,
+    "nameEn": "Pair of Wooden Wall Art Panels with Colorful Arabic Calligraphy"
   },
   {
     "id": 66,
-    "name": "تصميم يدوي #66",
+    "name": "لوحة جدارية مربعة بخط عربي فضي أزرق على شكل طائر",
     "price": 600,
     "image": "art-66.jpeg",
-    "originalPrice": 800
+    "originalPrice": 800,
+    "nameEn": "Square Wall Art with Silver-Blue Arabic Calligraphy in Bird Silhouette"
   },
   {
     "id": 67,
-    "name": "تصميم يدوي #67",
+    "name": "ساعة حائط دائرية خضراء زيتونية بنقش ذهبي بدون أرقام",
     "price": 750,
     "image": "art-67.jpeg",
-    "originalPrice": 1000
+    "originalPrice": 1000,
+    "nameEn": "Olive-Green Round Wall Clock with Golden Textured Pattern, No Numerals"
   },
   {
     "id": 68,
-    "name": "تصميم يدوي #68",
+    "name": "طبق حائط دائري نصفه بخط عربي ونصفه بزخارف فوانيس رمضانية",
     "price": 250,
     "image": "art-68.jpeg",
     "soldOut": true,
-    "originalPrice": 350
+    "originalPrice": 350,
+    "nameEn": "Round Wall Plate with Arabic Calligraphy and Ramadan Lantern Motifs"
   },
   {
     "id": 69,
-    "name": "تصميم يدوي #69",
+    "name": "ساعة حائط دائرية خضراء داكنة بأرقام رومانية ذهبية",
     "price": 750,
     "image": "art-69.jpeg",
-    "originalPrice": 1000
+    "originalPrice": 1000,
+    "nameEn": "Dark Teal Round Wall Clock with Golden Roman Numerals"
   },
   {
     "id": 70,
-    "name": "تصميم يدوي #70",
+    "name": "علبة مجوهرات خشبية زرقاء مخضرة بأربعة أقسام داخلية",
     "price": 500,
     "image": "art-70.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Teal Wooden Jewelry Box with Four Internal Compartments"
   },
   {
     "id": 71,
-    "name": "تصميم يدوي #71",
+    "name": "علبة خشبية زرقاء بملمس متشقق ونقش زهور فضي بارز",
     "price": 650,
     "image": "art-71.jpeg",
-    "originalPrice": 850
+    "originalPrice": 850,
+    "nameEn": "Light Blue Crackle-Finish Wooden Box with Embossed Silver Floral Pattern"
   },
   {
     "id": 72,
-    "name": "تصميم يدوي #72",
+    "name": "صندوق خشبي مربع أزرق فاتح بنقش زهور ذهبي دائري",
     "price": 350,
     "image": "art-72.jpeg",
     "soldOut": true,
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "Light Blue Square Wooden Box with Golden Floral Medallion Stencil"
   },
   {
     "id": 73,
-    "name": "تصميم يدوي #73",
+    "name": "طقم علبتين مجوهرات خشبيتين خضراوين بإطار ذهبي وصورة وردة بيضاوية",
     "price": 550,
     "image": "art-73.jpeg",
-    "originalPrice": 700
+    "originalPrice": 700,
+    "nameEn": "Set of Two Sage-Green Wooden Jewelry Boxes with Gold Trim and Oval Rose Cameo"
   },
   {
     "id": 74,
-    "name": "تصميم يدوي #74",
+    "name": "علبة صغيرة فيروزية بنقش شمسي بارز",
     "price": 500,
     "image": "art-74.jpeg",
     "soldOut": true,
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Small Turquoise Trinket Box with Embossed Sunburst Pattern"
   },
   {
     "id": 75,
-    "name": "تصميم يدوي #75",
+    "name": "علبة معدنية دائرية زرقاء بغطاء أبيض برسمة زهور وبالونات عيد ميلاد",
     "price": 550,
     "image": "art-75.jpeg",
     "soldOut": true,
-    "originalPrice": 700
+    "originalPrice": 700,
+    "nameEn": "Round Blue Tin Box with White Lid Featuring Birthday Flowers and Balloons Print"
   },
   {
     "id": 76,
-    "name": "تصميم يدوي #76",
+    "name": "لوحة دائرية بخط عربي ذهبي وزخارف فسيفساء على خلفية فيروزية",
     "price": 300,
     "image": "art-76.jpeg",
-    "originalPrice": 400
+    "originalPrice": 400,
+    "nameEn": "Round Teal Plaque with Golden Arabic Calligraphy and Mosaic Corner Motifs"
   },
   {
     "id": 77,
-    "name": "تصميم يدوي #77",
+    "name": "طقم تجميل خشبي أزرق فاتح مشط ومرآة وفرشاة بنقش ذهبي",
     "price": 650,
     "image": "art-77.jpeg",
-    "originalPrice": 850
+    "originalPrice": 850,
+    "nameEn": "Light Blue Wooden Vanity Set: Comb, Mirror, and Brush with Golden Floral Pattern"
   },
   {
     "id": 78,
-    "name": "تصميم يدوي #78",
+    "name": "كلمة عربية خشبية منحوتة بلون وردي فاتح",
     "price": 250,
     "image": "art-78.jpeg",
-    "originalPrice": 350
+    "originalPrice": 350,
+    "nameEn": "Pale Pink Carved Wooden Arabic Word Decor"
   },
   {
     "id": 79,
-    "name": "تصميم يدوي #79",
+    "name": "طقم شنطة وحقيبة صغيرة قماش مطرزة برسومات منازل ونخيل ملونة",
     "price": 450,
     "image": "art-79.jpeg",
-    "originalPrice": 600
+    "originalPrice": 600,
+    "nameEn": "Embroidered Canvas Tote and Pouch Set with Colorful House and Palm Tree Motifs"
   },
   {
     "id": 80,
-    "name": "تصميم يدوي #80",
+    "name": "ساعة حائط دائرية خضراء داكنة بأرقام رومانية ذهبية ونقش بارز",
     "price": 750,
     "image": "art-80.jpeg",
-    "originalPrice": 1000
+    "originalPrice": 1000,
+    "nameEn": "Dark Green Round Wall Clock with Golden Roman Numerals and Textured Pattern"
   },
   {
     "id": 81,
-    "name": "تصميم يدوي #81",
+    "name": "قطعة رمضانية خشبية على شكل قوس بهلال ذهبي",
     "price": 400,
     "image": "art-81.jpeg",
-    "originalPrice": 500
+    "originalPrice": 500,
+    "nameEn": "White Textured Wooden Ramadan Arch Decor with Golden Crescent Moon"
   },
   {
     "id": 82,
-    "name": "تصميم يدوي #82",
+    "name": "لوحة جدارية كبيرة بخط عربي ذهبي وزخارف فيروزية دائرية",
     "price": 750,
     "image": "art-82.jpeg",
-    "originalPrice": 1000
+    "originalPrice": 1000,
+    "nameEn": "Large Wall Art with Golden Arabic Calligraphy and Teal Medallion Accents"
   },
   {
     "id": 83,
-    "name": "تصميم يدوي #83",
+    "name": "حامل بيض معدني ذهبي اللون على شكل زهرة بتمثال ديك",
     "price": 350,
     "image": "art-83.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "Golden-Toned Metal Egg Holder Stand with Rooster Figure"
   },
   {
     "id": 84,
-    "name": "تصميم يدوي #84",
+    "name": "حامل بيض معدني ذهبي مع بيض مزخرف يدويًا",
     "price": 350,
     "image": "art-84.jpeg",
-    "originalPrice": 450
+    "originalPrice": 450,
+    "nameEn": "Golden-Toned Egg Holder Stand with Hand-Decorated Eggs"
   },
   {
     "id": 85,
-    "name": "تصميم يدوي #85",
+    "name": "قطعة خشبية بكلمة Beach ورموز بحرية بلون فيروزي",
     "price": 700,
     "image": "art-85.jpeg",
-    "originalPrice": 900
+    "originalPrice": 900,
+    "nameEn": "Teal Wooden Beach Sign with Nautical Icon Cutouts"
   },
   {
     "id": 86,
-    "name": "تصميم يدوي #86",
+    "name": "حامل بخور على شكل درويش متصوف بقاعدة قلب أبيض",
     "price": 450,
     "image": "art-86.jpeg",
-    "originalPrice": 600
+    "originalPrice": 600,
+    "nameEn": "Whirling Dervish Incense Holder with White Heart-Shaped Base"
   },
   {
     "id": 87,
-    "name": "تصميم يدوي #87",
+    "name": "طقم علبة مجوهرات ومرآة يد بنقش زهور وردية",
     "price": 700,
     "image": "art-87.jpeg",
-    "originalPrice": 900
+    "originalPrice": 900,
+    "nameEn": "Jewelry Box and Hand Mirror Set with Pink Floral Decoupage"
   },
   {
     "id": 88,
-    "name": "تصميم يدوي #88",
+    "name": "صينية خشبية بيضاء بمقابض ذهبية منحوتة ونقش هندسي",
     "price": 650,
     "image": "art-88.jpeg",
-    "originalPrice": 850
+    "originalPrice": 850,
+    "nameEn": "White Wooden Tray with Carved Golden Handles and Geometric Pattern"
   },
   {
     "id": 89,
-    "name": "تصميم يدوي #89",
+    "name": "طقم علبتين خشبيتين للمجوهرات بنقش ورود وفراشات",
     "price": 500,
     "image": "art-89.jpeg",
-    "originalPrice": 650
+    "originalPrice": 650,
+    "nameEn": "Set of Two Wooden Jewelry Boxes with Floral and Butterfly Print"
   },
   {
     "id": 90,
-    "name": "تصميم يدوي #90",
+    "name": "حقيبة قماش مقلمة برسمة سرطان وعبارة Oh Crab",
     "price": 175,
     "image": "art-90.jpeg",
-    "originalPrice": 250
+    "originalPrice": 250,
+    "nameEn": "Striped Canvas Pouch with Crab Illustration and Oh Crab Text"
   },
   {
     "id": 91,
-    "name": "تصميم يدوي #91",
+    "name": "حقيبة قماش برسمة امرأة تحت مظلة شاطئ وردية",
     "price": 175,
     "image": "art-91.jpeg",
-    "originalPrice": 250
+    "originalPrice": 250,
+    "nameEn": "Canvas Pouch with Woman Under Pink Beach Umbrella Illustration"
   },
   {
     "id": 92,
-    "name": "تصميم يدوي #92",
+    "name": "حقيبة قماش برسمة نخلة بطراز مطبوع تقليدي",
     "price": 175,
     "image": "art-92.jpeg",
-    "originalPrice": 250
+    "originalPrice": 250,
+    "nameEn": "Canvas Pouch with Palm Tree Block-Print Style Illustration"
   },
   {
     "id": 93,
-    "name": "تصميم يدوي #93",
+    "name": "قطعة حائط خشبية بإطار فيروزي وسرطان وردي وكلمة sea",
     "price": 250,
     "image": "art-93.jpeg",
-    "originalPrice": 350
+    "originalPrice": 350,
+    "nameEn": "Teal-Framed Wooden Wall Decor with Pink Crab and Sea Word"
   },
   {
     "id": 94,
-    "name": "تصميم يدوي #94",
+    "name": "مريلة مطبخ كريمية بعبارات ملونة مطرزة",
     "price": 200,
     "image": "art-94.jpeg",
-    "originalPrice": 250
+    "originalPrice": 250,
+    "nameEn": "Cream Kitchen Apron with Colorful Embroidered Text"
   },
   {
     "id": 95,
-    "name": "تصميم يدوي #95",
+    "name": "معلقة سيارة خشبية على شكل شبشب بحري فيروزي",
     "price": 70,
     "image": "art-95.jpeg",
-    "originalPrice": 100
+    "originalPrice": 100,
+    "nameEn": "Teal Wooden Flip-Flop Car Hanging Ornament"
   },
   {
     "id": 96,
-    "name": "تصميم يدوي #96",
+    "name": "علبة خشبية فيروزية بنقش دمشقي ذهبي بارز على كامل السطح",
     "price": 550,
     "image": "art-96.jpeg",
-    "originalPrice": 700
+    "originalPrice": 700,
+    "nameEn": "Teal Wooden Box with All-Over Embossed Golden Damask Pattern"
   }
 ]
