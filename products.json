@@ -129,11 +129,11 @@
   },
   {
     "id": 17,
-    "name": "طقم تقديم أزرق صينية وعلبة مناديل بنقش ذهبي",
+    "name": "طقم تقديم أزرق صينية وعلبة مناديل وكوسترات بنقش ذهبي",
     "price": 1200,
     "image": "art-17.jpeg",
     "originalPrice": 1550,
-    "nameEn": "Blue Wooden Tray and Tissue Box Set with Golden Stencil Pattern"
+    "nameEn": "Blue Wooden Tray, Tissue Box & Coaster Set with Golden Stencil Pattern"
   },
   {
     "id": 18,
@@ -177,11 +177,11 @@
   },
   {
     "id": 23,
-    "name": "علبة خشبية بغطاء وردي بتصميم قلب من قصاصات قماش",
+    "name": "علبة خشبية بغطاء وردي بتصميم قلب",
     "price": 450,
     "image": "art-23.jpeg",
     "originalPrice": 600,
-    "nameEn": "Wooden Box with Pink Lid and Fabric Heart Collage Design"
+    "nameEn": "Wooden Box with Pink Lid and Heart Design"
   },
   {
     "id": 24,
@@ -233,11 +233,11 @@
   },
   {
     "id": 30,
-    "name": "صينية خشبية زرقاء لأدوات التجميل بثلاث فتحات منحوتة",
+    "name": "علبة خشبية زرقاء لأدوات السفرة للمعالق والشوك والسكاكين بثلاث فتحات منحوتة",
     "price": 1000,
     "image": "art-30.jpeg",
     "originalPrice": 1300,
-    "nameEn": "Blue Wooden Vanity Valet Tray with Three Grooming Tool Slots"
+    "nameEn": "Blue Wooden Cutlery Holder with Three Carved Slots for Spoons, Forks & Knives"
   },
   {
     "id": 31,
@@ -274,7 +274,7 @@
   {
     "id": 35,
     "name": "طقم ٣ شمعدانات خضراء مع صينية خشبية منحوتة",
-    "price": 2400,
+    "price": 1900,
     "image": "art-35.jpeg",
     "originalPrice": 3100,
     "nameEn": "Set of 3 Sage-Green Candle Holders with Matching Carved Tray"
@@ -713,7 +713,8 @@
     "price": 500,
     "image": "art-89.jpeg",
     "originalPrice": 650,
-    "nameEn": "Set of Two Wooden Jewelry Boxes with Floral and Butterfly Print"
+    "nameEn": "Set of Two Wooden Jewelry Boxes with Floral and Butterfly Print",
+    "soldOut": true
   },
   {
     "id": 90,
