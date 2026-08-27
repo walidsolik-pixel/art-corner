@@ -61,7 +61,8 @@
     "price": 550,
     "image": "art-8.jpeg",
     "originalPrice": 700,
-    "nameEn": "Printed T-Shirt and Tote Bag Set with Colorful Fish Design"
+    "nameEn": "Printed T-Shirt and Tote Bag Set with Colorful Fish Design",
+    "soldOut": true
   },
   {
     "id": 9,
@@ -85,7 +86,8 @@
     "price": 350,
     "image": "art-11.jpeg",
     "originalPrice": 450,
-    "nameEn": "White Kids T-Shirt with Duck Illustration and Arabic Text"
+    "nameEn": "White Kids T-Shirt with Duck Illustration and Arabic Text",
+    "soldOut": true
   },
   {
     "id": 12,
@@ -93,7 +95,8 @@
     "price": 350,
     "image": "art-12.jpeg",
     "originalPrice": 450,
-    "nameEn": "White Kids T-Shirt with Curly-Haired Girl and Pink Bow Print"
+    "nameEn": "White Kids T-Shirt with Curly-Haired Girl and Pink Bow Print",
+    "soldOut": true
   },
   {
     "id": 13,
@@ -101,7 +104,8 @@
     "price": 350,
     "image": "art-13.jpeg",
     "originalPrice": 450,
-    "nameEn": "White Kids T-Shirt with Pastel Ballerina Illustration"
+    "nameEn": "White Kids T-Shirt with Pastel Ballerina Illustration",
+    "soldOut": true
   },
   {
     "id": 14,
@@ -109,7 +113,8 @@
     "price": 350,
     "image": "art-14.jpeg",
     "originalPrice": 450,
-    "nameEn": "White Kids T-Shirt with Curly-Haired Girl Line Art"
+    "nameEn": "White Kids T-Shirt with Curly-Haired Girl Line Art",
+    "soldOut": true
   },
   {
     "id": 15,
@@ -437,7 +442,8 @@
     "price": 350,
     "image": "art-55.jpeg",
     "originalPrice": 450,
-    "nameEn": "White Kids T-Shirt with Pink Panther Cartoon Print"
+    "nameEn": "White Kids T-Shirt with Pink Panther Cartoon Print",
+    "soldOut": true
   },
   {
     "id": 56,
