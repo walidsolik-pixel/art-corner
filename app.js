@@ -1,6 +1,5 @@
 const WHATSAPP_NUMBER = "201284622564";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
-const CART_KEY = "amira_art_corner_cart";
 const DISCOUNT_MARKUP = 1.3; // "before discount" price = sale price * 1.3
 
 // Google Apps Script Web App — still used for the live "N browsing now"
@@ -48,21 +47,6 @@ function whatsappLink(product) {
   return `${WHATSAPP_URL}?text=${msg}`;
 }
 
-function buildCheckoutMessage() {
-  const lang = getLang();
-  const T = t();
-  const items = cartItemsList();
-  const lines = [T.checkoutIntro];
-  let total = 0;
-  items.forEach(it => {
-    const lineTotal = it.price * it.qty;
-    total += lineTotal;
-    lines.push(`- ${it.name} × ${it.qty} = ${formatPrice(lineTotal, lang)}`);
-  });
-  lines.push(`${T.checkoutTotal}: ${formatPrice(total, lang)}`);
-  return lines.join("\n");
-}
-
 /* ---------------- Meta Pixel events ---------------- */
 
 // eventId is optional — pass it for Purchase so the server-side Conversions
@@ -88,141 +72,6 @@ function gaItem(product, qty) {
     price: product.price,
     quantity: qty || 1,
   };
-}
-
-/* ---------------- Cart storage ---------------- */
-
-function getCart() {
-  try {
-    return JSON.parse(localStorage.getItem(CART_KEY)) || {};
-  } catch (e) {
-    return {};
-  }
-}
-
-function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-}
-
-function addToCart(productId) {
-  const cart = getCart();
-  cart[productId] = (cart[productId] || 0) + 1;
-  saveCart(cart);
-  renderCartBadge();
-  renderCartDrawer();
-
-  const product = PRODUCTS.find(p => String(p.id) === String(productId));
-  if (product) {
-    trackPixel("AddToCart", {
-      content_ids: [String(product.id)],
-      content_type: "product",
-      content_name: productName(product),
-      value: product.price,
-      currency: "EGP",
-    });
-    trackGA("add_to_cart", {
-      currency: "EGP",
-      value: product.price,
-      items: [gaItem(product)],
-    });
-  }
-}
-
-function changeQty(productId, delta) {
-  const cart = getCart();
-  if (!cart[productId]) return;
-  cart[productId] += delta;
-  if (cart[productId] <= 0) delete cart[productId];
-  saveCart(cart);
-  renderCartBadge();
-  renderCartDrawer();
-}
-
-function removeFromCart(productId) {
-  const cart = getCart();
-  delete cart[productId];
-  saveCart(cart);
-  renderCartBadge();
-  renderCartDrawer();
-}
-
-function cartCount() {
-  const cart = getCart();
-  return Object.values(cart).reduce((a, b) => a + b, 0);
-}
-
-function cartSubtotal() {
-  const cart = getCart();
-  let total = 0;
-  for (const id in cart) {
-    const product = PRODUCTS.find(p => String(p.id) === String(id));
-    if (product) total += product.price * cart[id];
-  }
-  return total;
-}
-
-function cartItemsList() {
-  const cart = getCart();
-  return Object.keys(cart)
-    .map(id => {
-      const product = PRODUCTS.find(p => String(p.id) === String(id));
-      return product ? { id: product.id, name: productName(product), qty: cart[id], price: product.price } : null;
-    })
-    .filter(Boolean);
-}
-
-function renderCartBadge() {
-  const el = document.getElementById("cartBadge");
-  if (el) el.textContent = cartCount();
-}
-
-function renderCartDrawer() {
-  const cart = getCart();
-  const container = document.getElementById("cartItems");
-  if (!container) return;
-  const ids = Object.keys(cart);
-  const lang = getLang();
-  const T = t();
-  const isEmpty = ids.length === 0;
-
-  if (isEmpty) {
-    container.innerHTML = `<div class="cart-empty">${T.cartEmpty}</div>`;
-  } else {
-    container.innerHTML = ids.map(id => {
-      const product = PRODUCTS.find(p => String(p.id) === String(id));
-      if (!product) return "";
-      const qty = cart[id];
-      return `
-        <div class="cart-item">
-          <img src="${product.image}" alt="${productName(product)}" />
-          <div class="cart-item-info">
-            <div class="cart-item-name">${productName(product)}</div>
-            <div class="cart-item-price">${formatPrice(product.price, lang)}</div>
-            <div class="cart-item-qty">
-              <button data-action="dec" data-id="${id}" type="button">−</button>
-              <span>${qty}</span>
-              <button data-action="inc" data-id="${id}" type="button">+</button>
-              <button class="cart-item-remove" data-action="remove" data-id="${id}" type="button">${T.remove}</button>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join("");
-  }
-
-  document.getElementById("cartTotal").textContent = formatPrice(cartSubtotal(), lang);
-  const checkoutBtn = document.getElementById("cartCheckoutBtn");
-  if (checkoutBtn) checkoutBtn.disabled = isEmpty;
-
-  container.querySelectorAll("button[data-action]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const id = btn.dataset.id;
-      const action = btn.dataset.action;
-      if (action === "inc") changeQty(id, 1);
-      if (action === "dec") changeQty(id, -1);
-      if (action === "remove") removeFromCart(id);
-    });
-  });
 }
 
 /* ---------------- Product image lightbox (click-to-zoom) ----------------
@@ -295,16 +144,6 @@ function startPresenceHeartbeat() {
   setInterval(sendPresenceHeartbeat, PRESENCE_INTERVAL_MS);
 }
 
-function openCart() {
-  document.getElementById("cartDrawer").classList.add("open");
-  document.getElementById("cartOverlay").classList.add("open");
-}
-
-function closeCart() {
-  document.getElementById("cartDrawer").classList.remove("open");
-  document.getElementById("cartOverlay").classList.remove("open");
-}
-
 /* ---------------- Static text ---------------- */
 
 function applyStaticText() {
@@ -339,7 +178,6 @@ function toggleLang() {
   setLang(getLang() === "ar" ? "en" : "ar");
   applyStaticText();
   render();
-  renderCartDrawer();
 }
 
 /* ---------------- Product grid ---------------- */
@@ -396,7 +234,7 @@ function render() {
             <span class="price-original">${formatPrice(orig, lang)}</span>
             <span class="price-sale">${formatPrice(p.price, lang)}</span>
           </div>
-          <button class="add-cart-btn" type="button" disabled>${T.soldOut}</button>
+          <button class="order-btn" type="button" disabled>${T.soldOut}</button>
         </div>
       </div>
     `;
@@ -417,26 +255,11 @@ function render() {
           <span class="price-original">${formatPrice(orig, lang)}</span>
           <span class="price-sale">${formatPrice(p.price, lang)}</span>
         </div>
-        <button class="add-cart-btn" data-add-id="${p.id}" type="button">${T.addToCart}</button>
         <button class="order-btn" data-order-id="${p.id}" type="button">${T.orderNow}</button>
       </div>
     </div>
   `;
   }).join("");
-
-  grid.querySelectorAll("button[data-add-id]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      addToCart(btn.dataset.addId);
-      const original = t().addToCart;
-      btn.textContent = t().addedToCart;
-      btn.classList.add("added");
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.classList.remove("added");
-      }, 1200);
-      openCart();
-    });
-  });
 
   grid.querySelectorAll("button[data-order-id]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -514,8 +337,6 @@ async function init() {
   }
 
   render();
-  renderCartBadge();
-  renderCartDrawer();
 
   // Structured data is only for crawlers, not for the visible page, so build
   // it once the browser is idle instead of competing with the initial render.
@@ -572,30 +393,7 @@ async function init() {
     });
   }
 
-  document.getElementById("cartOpenBtn")?.addEventListener("click", openCart);
-  document.getElementById("cartCloseBtn")?.addEventListener("click", closeCart);
-  document.getElementById("cartOverlay")?.addEventListener("click", closeCart);
   document.getElementById("langToggleBtn")?.addEventListener("click", toggleLang);
-
-  document.getElementById("cartCheckoutBtn")?.addEventListener("click", () => {
-    const cart = getCart();
-    const ids = Object.keys(cart);
-    if (ids.length === 0) return;
-    trackPixel("InitiateCheckout", {
-      content_ids: ids,
-      content_type: "product",
-      value: cartSubtotal(),
-      currency: "EGP",
-      num_items: cartCount(),
-    });
-    trackGA("begin_checkout", {
-      currency: "EGP",
-      value: cartSubtotal(),
-      items: cartItemsList().map(it => gaItem(PRODUCTS.find(p => String(p.id) === String(it.id)), it.qty)),
-    });
-    const msg = encodeURIComponent(buildCheckoutMessage());
-    window.open(`${WHATSAPP_URL}?text=${msg}`, "_blank", "noopener");
-  });
 
   document.getElementById("lightboxCloseBtn")?.addEventListener("click", closeLightbox);
   document.getElementById("lightboxOverlay")?.addEventListener("click", (e) => {
