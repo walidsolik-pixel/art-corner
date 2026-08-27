@@ -70,9 +70,9 @@ function doPost(e) {
     });
 
     sendWhatsAppAlert(orderId, body, items, subtotal, shipping, total);
-    sendMetaPurchase(orderId, body, total, items);
+    const metaDebug = sendMetaPurchase(orderId, body, total, items);
 
-    return jsonResponse({ success: true, orderId: orderId, shipping: shipping, subtotal: subtotal, total: total });
+    return jsonResponse({ success: true, orderId: orderId, shipping: shipping, subtotal: subtotal, total: total, metaDebug: metaDebug });
   } catch (err) {
     return jsonResponse({ success: false, error: String(err) });
   } finally {
@@ -208,14 +208,18 @@ function sendMetaPurchase(orderId, body, total, items) {
 
   const url = "https://graph.facebook.com/v19.0/" + META_PIXEL_ID + "/events?access_token=" + token;
   try {
-    UrlFetchApp.fetch(url, {
+    const resp = UrlFetchApp.fetch(url, {
       method: "post",
       contentType: "application/json",
       payload: JSON.stringify(payload),
       muteHttpExceptions: true,
     });
+    const debugInfo = { code: resp.getResponseCode(), body: resp.getContentText() };
+    Logger.log("Meta CAPI response " + debugInfo.code + ": " + debugInfo.body);
+    return debugInfo;
   } catch (e) {
     Logger.log("Meta CAPI send failed: " + e);
+    return { error: String(e) };
   }
 }
 

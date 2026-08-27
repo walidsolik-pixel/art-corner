@@ -1,6 +1,6 @@
 const fs = require('fs');
 const products = JSON.parse(fs.readFileSync('products.json', 'utf-8'));
-const BASE = 'https://walidsolik-pixel.github.io/art-corner';
+const BASE = 'https://art-corner.org';
 
 function csvEscape(v) {
   const s = String(v);

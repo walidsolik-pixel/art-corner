@@ -264,6 +264,39 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 
+.pinned-banner {
+  max-width: 1180px;
+  margin: 0 auto 6px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #f0fbfa;
+  border: 1px solid var(--turquoise);
+  border-radius: 10px;
+  color: var(--turquoise-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pinned-banner button {
+  background: var(--turquoise);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pinned-banner button:hover {
+  background: var(--turquoise-dark);
+}
+
 .grid {
   max-width: 1180px;
   margin: 0 auto;
