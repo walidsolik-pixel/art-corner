@@ -28,6 +28,8 @@ const TRANSLATIONS = {
     productName: (id) => `تصميم يدوي #${id}`,
     orderMsg: (name, price) => `مرحبًا، عايز أطلب: ${name} (${price})`,
     liveBrowsing: "بيتصفحوا المتجر دلوقتي",
+    pinnedShowing: "بتشوف القطعة اللي اخترتها من الإعلان 👇",
+    viewAllProducts: "عرض كل المنتجات",
   },
   en: {
     dir: "ltr",
@@ -56,6 +58,8 @@ const TRANSLATIONS = {
     productName: (id) => `Handmade Design #${id}`,
     orderMsg: (name, price) => `Hello, I'd like to order: ${name} (${price})`,
     liveBrowsing: "browsing the store right now",
+    pinnedShowing: "Showing the piece you picked from the ad 👇",
+    viewAllProducts: "View all products",
   }
 };
 

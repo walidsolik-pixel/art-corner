@@ -189,6 +189,9 @@ function render() {
   const T = t();
   const lang = getLang();
 
+  const pinnedBanner = document.getElementById("pinnedBanner");
+  if (pinnedBanner) pinnedBanner.hidden = !pinnedProductId;
+
   let items;
   if (pinnedProductId) {
     items = PRODUCTS.filter(p => String(p.id) === String(pinnedProductId));
@@ -332,8 +335,6 @@ async function init() {
   const productParam = params.get("p");
   if (productParam) {
     pinnedProductId = productParam;
-    const si = document.getElementById("searchInput");
-    if (si) si.value = productParam;
   }
 
   render();
@@ -375,6 +376,15 @@ async function init() {
       items: PRODUCTS.map(p => gaItem(p)),
     });
   }
+
+  document.getElementById("viewAllBtn")?.addEventListener("click", () => {
+    pinnedProductId = null;
+    currentQuery = "";
+    const si = document.getElementById("searchInput");
+    if (si) si.value = "";
+    history.replaceState(null, "", window.location.pathname);
+    render();
+  });
 
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
