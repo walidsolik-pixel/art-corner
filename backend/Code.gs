@@ -53,6 +53,12 @@ function doPost(e) {
   lock.waitLock(10000);
   try {
     const body = JSON.parse(e.postData.contents);
+
+    // Manual sale confirmation from log-sale.html — Amira confirms a WhatsApp
+    // order actually closed, so we can still report a real Purchase event to
+    // Meta even though checkout itself never touches this backend anymore.
+    if (body.action === "logSale") return handleLogSale(body);
+
     const error = validateOrder(body);
     if (error) return jsonResponse({ success: false, error: error });
 
@@ -78,6 +84,46 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+/* ---------------- Manual sale logging (log-sale.html) ----------------
+   For orders that closed over WhatsApp with no site-side checkout at all.
+   Skips shipping calc and the seller WhatsApp alert (Amira is the one
+   confirming it — she doesn't need to alert herself) but still logs to the
+   Sheet and reports a real Purchase event to Meta, exactly like a normal
+   order would, so Advantage+ campaigns get a genuine conversion signal. */
+
+function handleLogSale(body) {
+  const error = validateManualSale(body);
+  if (error) return jsonResponse({ success: false, error: error });
+
+  const ss = getOrCreateSpreadsheet();
+  const items = body.items;
+  const total = items.reduce(function (s, it) { return s + Number(it.price) * Number(it.qty); }, 0);
+  const orderId = "AC-" + Utilities.formatDate(new Date(), "Africa/Cairo", "yyMMdd-HHmmss");
+
+  appendManualSale(ss, { orderId: orderId, name: body.name || "", phone: body.phone, items: items, total: total });
+  const metaDebug = sendMetaPurchase(orderId, body, total, items);
+
+  return jsonResponse({ success: true, orderId: orderId, total: total, metaDebug: metaDebug });
+}
+
+function validateManualSale(body) {
+  if (!body) return "missing body";
+  if (!body.phone || !/^01[0-9]{9}$/.test(String(body.phone).trim())) return "رقم موبايل مصري غير صحيح";
+  if (!Array.isArray(body.items) || body.items.length === 0) return "لازم تختاري منتج واحد على الأقل";
+  return null;
+}
+
+function appendManualSale(ss, o) {
+  const sheet = ss.getSheetByName("Orders");
+  const itemsSummary = o.items
+    .map(function (it) { return it.name + " ×" + it.qty + " (" + it.price + " ج.م)"; })
+    .join(" | ");
+  sheet.appendRow([
+    new Date(), o.orderId, o.name || "-", o.phone, "-", "-",
+    "أوردر واتساب — تسجيل يدوي", itemsSummary, o.total, 0, o.total, "واتساب",
+  ]);
 }
 
 function validateOrder(body) {

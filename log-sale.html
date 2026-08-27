@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>تسجيل عملية بيع — Art Corner</title>
+<link rel="icon" href="logo.jpg" type="image/jpeg" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .log-sale-page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+  .log-sale-page h1 {
+    font-size: 22px;
+    margin: 0 0 4px;
+  }
+  .log-sale-page .hint {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0 0 24px;
+    line-height: 1.7;
+  }
+  .field-group {
+    margin-bottom: 18px;
+  }
+  .field-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .field-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    font-size: 15px;
+    font-family: inherit;
+  }
+  .product-results {
+    max-height: 260px;
+    overflow-y: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-top: 8px;
+  }
+  .product-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .product-row:last-child { border-bottom: none; }
+  .product-row img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .product-row .pinfo {
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+  }
+  .product-row .pinfo .pname {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .product-row .pinfo .pprice {
+    color: var(--muted);
+  }
+  .product-row button {
+    background: var(--turquoise);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .product-row button:hover { background: var(--turquoise-dark); }
+
+  .cart-list {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-top: 8px;
+  }
+  .cart-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cart-row:last-child { border-bottom: none; }
+  .cart-row .pinfo { flex: 1; min-width: 0; font-size: 14px; font-weight: 600; }
+  .cart-row .qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cart-row .qty-controls button {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: #fff;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .cart-row .line-total {
+    min-width: 70px;
+    text-align: left;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .cart-row .remove-btn {
+    background: none;
+    border: none;
+    color: var(--sale);
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .cart-empty {
+    padding: 16px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0;
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: var(--turquoise);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .submit-btn:hover { background: var(--turquoise-dark); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .result-msg {
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+    display: none;
+  }
+  .result-msg.ok {
+    background: #f0fbf8;
+    border: 1px solid var(--turquoise);
+    color: var(--turquoise-dark);
+    display: block;
+  }
+  .result-msg.err {
+    background: #fdf0ef;
+    border: 1px solid var(--sale);
+    color: var(--sale);
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="leaf">✦</span> Art Corner <img src="logo.jpg" alt="Art Corner logo" class="brand-logo" /></div>
+  </div>
+</div>
+
+<div class="log-sale-page">
+  <h1>📝 تسجيل عملية بيع تمت على واتساب</h1>
+  <p class="hint">
+    استخدمي الصفحة دي بس بعد ما تتأكدي إن العميلة فعلاً هتاخد الأوردر (بعد الاتفاق النهائي على واتساب).
+    هي هتسجّل العملية في الشيت وتبعت "Purchase" حقيقي لـ Meta عشان الإعلانات تتحسّن صح.
+    <strong>متستخدميهاش لأوردرات لسه مش متأكدة منها.</strong>
+  </p>
+
+  <div class="field-group">
+    <label for="custPhone">رقم موبايل العميلة *</label>
+    <input id="custPhone" type="tel" placeholder="01xxxxxxxxx" inputmode="numeric" />
+  </div>
+
+  <div class="field-group">
+    <label for="custName">اسم العميلة (اختياري)</label>
+    <input id="custName" type="text" placeholder="اسم العميلة" />
+  </div>
+
+  <div class="field-group">
+    <label for="productSearch">دوّري على المنتج وضيفيه</label>
+    <input id="productSearch" type="text" placeholder="ابحثي بالاسم أو رقم المنتج..." />
+    <div class="product-results" id="productResults"></div>
+  </div>
+
+  <div class="field-group">
+    <label>المنتجات المباعة</label>
+    <div class="cart-list" id="cartList">
+      <div class="cart-empty">لسه مفيش منتجات مضافة</div>
+    </div>
+  </div>
+
+  <div class="total-row">
+    <span>الإجمالي</span>
+    <span id="totalAmount">0 ج.م</span>
+  </div>
+
+  <button class="submit-btn" id="submitBtn" type="button">تسجيل عملية البيع</button>
+
+  <div class="result-msg" id="resultMsg"></div>
+</div>
+
+<script>
+const ORDERS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxdWFWzjk6ntqRpmqqUUjR-X5-P8EiAGqBNXyXmrGvnGoKgwBv_isyOakd60aO2tLg/exec";
+
+let PRODUCTS = [];
+let cart = {}; // id -> qty
+
+function formatPrice(p) {
+  return Math.round(p).toLocaleString("en-US") + " ج.م";
+}
+
+function renderProductResults(query) {
+  const box = document.getElementById("productResults");
+  if (!query) { box.innerHTML = ""; return; }
+  const q = query.toLowerCase();
+  const matches = PRODUCTS.filter(p =>
+    !p.soldOut && (p.name.toLowerCase().includes(q) || String(p.id).includes(q))
+  ).slice(0, 12);
+
+  if (matches.length === 0) {
+    box.innerHTML = `<div class="cart-empty">مفيش نتائج</div>`;
+    return;
+  }
+
+  box.innerHTML = matches.map(p => `
+    <div class="product-row">
+      <img src="${p.image}" alt="${p.name}" />
+      <div class="pinfo">
+        <div class="pname">#${p.id} — ${p.name}</div>
+        <div class="pprice">${formatPrice(p.price)}</div>
+      </div>
+      <button type="button" data-add="${p.id}">ضيفي</button>
+    </div>
+  `).join("");
+
+  box.querySelectorAll("button[data-add]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.add;
+      cart[id] = (cart[id] || 0) + 1;
+      renderCart();
+    });
+  });
+}
+
+function renderCart() {
+  const list = document.getElementById("cartList");
+  const ids = Object.keys(cart);
+
+  if (ids.length === 0) {
+    list.innerHTML = `<div class="cart-empty">لسه مفيش منتجات مضافة</div>`;
+    document.getElementById("totalAmount").textContent = formatPrice(0);
+    return;
+  }
+
+  let total = 0;
+  list.innerHTML = ids.map(id => {
+    const p = PRODUCTS.find(x => String(x.id) === id);
+    if (!p) return "";
+    const qty = cart[id];
+    const lineTotal = p.price * qty;
+    total += lineTotal;
+    return `
+      <div class="cart-row">
+        <div class="pinfo">#${p.id} — ${p.name}</div>
+        <div class="qty-controls">
+          <button type="button" data-dec="${id}">−</button>
+          <span>${qty}</span>
+          <button type="button" data-inc="${id}">+</button>
+        </div>
+        <div class="line-total">${formatPrice(lineTotal)}</div>
+        <button class="remove-btn" type="button" data-remove="${id}">✕</button>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("totalAmount").textContent = formatPrice(total);
+
+  list.querySelectorAll("button[data-inc]").forEach(btn => {
+    btn.addEventListener("click", () => { cart[btn.dataset.inc]++; renderCart(); });
+  });
+  list.querySelectorAll("button[data-dec]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.dec;
+      cart[id]--;
+      if (cart[id] <= 0) delete cart[id];
+      renderCart();
+    });
+  });
+  list.querySelectorAll("button[data-remove]").forEach(btn => {
+    btn.addEventListener("click", () => { delete cart[btn.dataset.remove]; renderCart(); });
+  });
+}
+
+function showResult(ok, text) {
+  const el = document.getElementById("resultMsg");
+  el.className = "result-msg " + (ok ? "ok" : "err");
+  el.textContent = text;
+}
+
+async function submitSale() {
+  const phone = document.getElementById("custPhone").value.trim();
+  const name = document.getElementById("custName").value.trim();
+  const btn = document.getElementById("submitBtn");
+
+  if (!/^01[0-9]{9}$/.test(phone)) {
+    showResult(false, "رقم الموبايل غلط — لازم يبدأ بـ 01 ويكون 11 رقم.");
+    return;
+  }
+  const ids = Object.keys(cart);
+  if (ids.length === 0) {
+    showResult(false, "لازم تضيفي منتج واحد على الأقل.");
+    return;
+  }
+
+  const items = ids.map(id => {
+    const p = PRODUCTS.find(x => String(x.id) === id);
+    return { id: p.id, name: p.name, price: p.price, qty: cart[id] };
+  });
+
+  btn.disabled = true;
+  btn.textContent = "جاري التسجيل...";
+
+  try {
+    const eventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
+    const res = await fetch(ORDERS_WEBAPP_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ action: "logSale", phone, name, items, event_id: eventId }),
+      redirect: "follow",
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      showResult(true, `✅ اتسجل بنجاح — رقم الأوردر ${data.orderId} — الإجمالي ${formatPrice(data.total)}`);
+      cart = {};
+      renderCart();
+      document.getElementById("custPhone").value = "";
+      document.getElementById("custName").value = "";
+      document.getElementById("productSearch").value = "";
+      document.getElementById("productResults").innerHTML = "";
+    } else {
+      showResult(false, "❌ حصل خطأ: " + (data.error || "غير معروف"));
+    }
+  } catch (e) {
+    showResult(false, "❌ فشل الاتصال بالسيرفر — جربي تاني.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "تسجيل عملية البيع";
+  }
+}
+
+async function init() {
+  const res = await fetch("products.json");
+  PRODUCTS = await res.json();
+
+  document.getElementById("productSearch").addEventListener("input", (e) => {
+    renderProductResults(e.target.value.trim());
+  });
+  document.getElementById("submitBtn").addEventListener("click", submitSale);
+}
+
+init();
+</script>
+
+</body>
+</html>
