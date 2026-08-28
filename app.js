@@ -41,9 +41,8 @@ function webpSrc(image) {
   return image.replace(/\.jpe?g$/i, ".webp");
 }
 
-function whatsappLink(product) {
-  const lang = getLang();
-  const msg = encodeURIComponent(t().orderMsg(productName(product), formatPrice(product.price, lang)));
+function whatsappLink() {
+  const msg = encodeURIComponent(t().welcomeMsg);
   return `${WHATSAPP_URL}?text=${msg}`;
 }
 
@@ -281,7 +280,7 @@ function render() {
         value: product.price,
         items: [gaItem(product)],
       });
-      window.open(whatsappLink(product), "_blank", "noopener");
+      window.open(whatsappLink(), "_blank", "noopener");
     });
   });
 
