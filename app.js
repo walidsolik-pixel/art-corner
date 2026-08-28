@@ -267,6 +267,23 @@ function render() {
     btn.addEventListener("click", () => {
       const product = PRODUCTS.find(p => String(p.id) === btn.dataset.orderId);
       if (!product) return;
+      // There's no literal cart anymore (checkout is WhatsApp-only), but
+      // tapping "Order via WhatsApp" for a product IS the cart-add moment —
+      // fire AddToCart too, not just InitiateCheckout, so the Catalog's
+      // event-matching (Product adds to cart) has a real signal to match
+      // against instead of showing "Missing" in Commerce Manager.
+      trackPixel("AddToCart", {
+        content_ids: [String(product.id)],
+        content_type: "product",
+        content_name: productName(product),
+        value: product.price,
+        currency: "EGP",
+      });
+      trackGA("add_to_cart", {
+        currency: "EGP",
+        value: product.price,
+        items: [gaItem(product)],
+      });
       trackPixel("InitiateCheckout", {
         content_ids: [String(product.id)],
         content_type: "product",
