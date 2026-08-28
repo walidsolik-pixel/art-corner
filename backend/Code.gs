@@ -16,7 +16,7 @@
  *      edit the Shipping tab any time, no redeploy needed.
  */
 
-const CALLMEBOT_PHONE = "201284622564";
+const CALLMEBOT_PHONE = "201217738215";
 const META_PIXEL_ID = "1698406408088102";
 const DEFAULT_SHIPPING_FEE = 70;
 const SPREADSHEET_NAME = "Art Corner Orders";

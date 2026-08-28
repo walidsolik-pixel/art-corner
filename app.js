@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "201284622564";
+const WHATSAPP_NUMBER = "201217738215";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 const DISCOUNT_MARKUP = 1.3; // "before discount" price = sale price * 1.3
 
