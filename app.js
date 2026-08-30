@@ -41,9 +41,18 @@ function webpSrc(image) {
   return image.replace(/\.jpe?g$/i, ".webp");
 }
 
-function whatsappLink() {
-  const msg = encodeURIComponent(t().welcomeMsg);
-  return `${WHATSAPP_URL}?text=${msg}`;
+// wa.me links can only pre-fill text, not attach a file - WhatsApp doesn't
+// allow forcing a media send through a URL. The closest we can get to
+// "send the product photo too" is putting the image's direct URL in the
+// message text: WhatsApp auto-generates a link preview thumbnail for raw
+// image URLs, so the picture still shows up in the chat, just as a link
+// preview rather than a real attachment.
+function whatsappLink(product) {
+  const lang = getLang();
+  const msg = product
+    ? t().orderMsg(productName(product), formatPrice(product.price, lang), `https://art-corner.org/${product.image}`)
+    : t().welcomeMsg;
+  return `${WHATSAPP_URL}?text=${encodeURIComponent(msg)}`;
 }
 
 /* ---------------- Meta Pixel events ---------------- */
@@ -297,7 +306,7 @@ function render() {
         value: product.price,
         items: [gaItem(product)],
       });
-      window.open(whatsappLink(), "_blank", "noopener");
+      window.open(whatsappLink(product), "_blank", "noopener");
     });
   });
 
