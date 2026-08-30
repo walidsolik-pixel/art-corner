@@ -264,7 +264,13 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 
-.pinned-banner {
+/* BUG FIX: this used to be an unconditional `display: flex` on
+   .pinned-banner, which beat the element's `hidden` attribute in the
+   cascade (same specificity, our rule loads after the UA stylesheet) —
+   so the banner rendered on EVERY page load for EVERY visitor, not just
+   when someone actually arrived via a product's ?p= ad link. Scoping the
+   flex layout to :not([hidden]) lets the attribute win when it's set. */
+.pinned-banner:not([hidden]) {
   max-width: 1180px;
   margin: 0 auto 6px;
   padding: 12px 20px;
